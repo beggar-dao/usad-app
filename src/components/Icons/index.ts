@@ -1,0 +1,11 @@
+export { default as AccountIcon } from './AccountIcon';
+export { default as AddressIcon } from './AddressIcon';
+export { default as CheckedIcon } from './CheckedIcon';
+export { default as DownArrowIcon } from './DownArrowIcon';
+export { default as ExportIcon } from './ExportIcon';
+export { default as LogoutIcon } from './LogoutIcon';
+export { default as PaymentIcon } from './PaymentIcon';
+export { default as TimeIcon } from './TimeIcon';
+export { default as UsadIcon } from './UsadIcon';
+export { default as VerificationIcon } from './VerificationIcon';
+export { default as WalletIcon } from './WalletIcon';
