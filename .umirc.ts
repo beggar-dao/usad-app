@@ -45,9 +45,9 @@ export default defineConfig({
             colorPrimary: '#5B6276',
           },
           Checkbox: {
-            colorBorder: '#ADB1B8'
-          }
-        }
+            colorBorder: '#ADB1B8',
+          },
+        },
       },
     },
   },
@@ -193,7 +193,7 @@ export default defineConfig({
   routes: [
     {
       path: '/',
-      redirect: '/user',
+      component: './user/index',
     },
     {
       path: '/auth',
@@ -328,4 +328,5 @@ export default defineConfig({
 
   npmClient: 'pnpm',
   tailwindcss: {},
+  esbuildMinifyIIFE: true,
 });
