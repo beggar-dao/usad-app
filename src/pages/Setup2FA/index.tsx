@@ -19,7 +19,7 @@ const Setup2FAForm = () => {
   // Check if 2FA is enabled, redirect to login if disabled
   useEffect(() => {
     if (!is2FAEnabled()) {
-      history.push('/Auth/Login');
+      history.push('/auth/login');
       return;
     }
   }, []);
@@ -85,7 +85,7 @@ const Setup2FAForm = () => {
                   extra={
                     <Button
                       type="primary"
-                      onClick={() => history.push('/Auth/Login')}
+                      onClick={() => history.push('/auth/login')}
                     >
                       Go to Login
                     </Button>

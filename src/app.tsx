@@ -40,7 +40,7 @@ export const request: RequestConfig = {
       let data = response.data;
 
       if (data.code === 'A10005') {
-        history.push('/Auth/Login');
+        history.push('/auth/login');
       }
 
       if (data.code !== '00000') {
@@ -66,19 +66,19 @@ export function onRouteChange({ clientRoutes, location }) {
         'USAD is a fully-backed digital British Pound designed for institutions, fintechs, and individuals—fast, secure, and transparent.',
     },
     {
-      path: '/Auth/Login',
+      path: '/auth/login',
       title: 'USAD Login: Secure Account Access',
       description:
         'Log in to your USAD account with secure two-factor authentication and manage your digital Pound holdings.',
     },
     {
-      path: '/CreateAccount',
+      path: '/auth/createAccount',
       title: 'Create Your USAD Account',
       description:
         'Sign up for a USAD account to buy, redeem, and manage USA-backed digital tokens securely and easily.',
     },
     {
-      path: '/ResetPassword',
+      path: '/auth/resetPassword',
       title: 'Reset Your USAD Password',
       description:
         'Forgot your password? Securely reset your USAD login credentials and regain access to your account.',

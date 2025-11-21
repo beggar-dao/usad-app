@@ -170,13 +170,13 @@ const LoginForm = () => {
                 <div className="flex justify-between">
                   <p className="text-[#ADB1B8] font-[300] !text-xs !border-0">
                     Don&apos;t have an account yet?{' '}
-                    <a className="text-[#C69F58]" href="/Auth/CreateAccount">
+                    <a className="text-[#C69F58]" href="/auth/createAccount">
                       Register
                     </a>
                   </p>
                   <p className="font-[300] !text-xs !border-0">
                     Forgot password?{' '}
-                    <a className="text-[#C69F58]" href="/Auth/ResetPassword">
+                    <a className="text-[#C69F58]" href="/auth/resetPassword">
                       Reset
                     </a>
                   </p>

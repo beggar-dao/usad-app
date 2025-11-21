@@ -117,12 +117,7 @@ const CreateAccountForm = () => {
       // Success message is handled in the auth model
       // Add a small delay to ensure the success message is visible before redirect
       setTimeout(() => {
-        // if (is2FAEnabled()) {
-        //   window.location.href = '/Auth/Setup2FA';
-        // } else {
-
-        // }
-        history.push('/Auth/Login');
+        history.push('/auth/login');
       }, 1500); // 1.5 second delay to show success message
     } catch (error) {
       console.error('Registration error:', error);
@@ -625,7 +620,7 @@ const CreateAccountForm = () => {
                     <div className="text-center">
                       <p className="text-[#666]">
                         Already have an account?{' '}
-                        <a href="/Auth/Login" className="text-[#C69F58]">
+                        <a href="/auth/login" className="text-[#C69F58]">
                           Log in
                         </a>
                       </p>

@@ -193,37 +193,25 @@ export default defineConfig({
   routes: [
     {
       path: '/',
-      component: './home',
+      redirect: '/user',
     },
     {
-      path: '/history',
-      component: './history',
-    },
-    {
-      path: '/mint',
-      component: './mint',
-    },
-    {
-      path: '/Auth/Login',
-      component: './Login',
-    },
-    {
-      path: '/Auth/CreateAccount',
-      component: './CreateAccount',
-    },
-    {
-      path: '/Auth/ResetPassword',
-      component: './ResetPassword',
-    },
-    {
-      path: '/Auth/Setup2FA',
-      component: './Setup2FA',
+      path: '/auth',
+      component: './auth/index',
+      footer: false,
+      routes: [
+        { path: '/auth/login', component: './Login' },
+        { path: '/auth/createAccount', component: './CreateAccount' },
+        { path: '/auth/resetPassword', component: './ResetPassword' },
+        { path: '/auth/setup2FA', component: './Setup2FA' },
+      ],
     },
     {
       path: '/user',
       component: './user/index',
       footer: false,
       routes: [
+        { path: '/user', redirect: '/user/profile' },
         { path: '/user/profile', component: './user/profile' },
         { path: '/user/verification', component: './user/verification' },
         {

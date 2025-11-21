@@ -272,7 +272,7 @@ export default function useAuthModel() {
       });
 
       // Redirect to login page
-      history.push('/Auth/Login');
+      history.push('/auth/login');
     },
     {
       manual: true,
@@ -283,7 +283,7 @@ export default function useAuthModel() {
         setUser(null);
         setIsAuthenticated(false);
         console.error('Logout error:', error);
-        history.push('/Auth/Login');
+        history.push('/auth/login');
       },
     },
   );
@@ -393,7 +393,7 @@ export default function useAuthModel() {
           show: true,
         });
         // Redirect to login page after successful 2FA setup
-        history.push('/Auth/Login');
+        history.push('/auth/login');
       }
 
       return response;

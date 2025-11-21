@@ -1,6 +1,4 @@
 import CustomerAlert from '@/components/CustomerAlert';
-import Footer from '@/components/footer';
-import Header from '@/components/header';
 import SecurityVerification from '@/components/SecurityVerification';
 import { Outlet, useLocation, useModel } from '@umijs/max';
 import { Flex, Modal, Progress, Spin } from 'antd';
@@ -8,12 +6,11 @@ import { useEffect, useState } from 'react';
 
 export default () => {
   const location = useLocation();
-  const { isWeb, check } = useModel('window');
+  const { check } = useModel('window');
   const { loading } = useModel('global');
   const [sessionModal, setSessionModal] = useState(false);
   const { logout } = useModel('auth');
   const [exit, setExit] = useState(false);
-  const isAuth = location.pathname.includes('/Auth/') || location.pathname.includes('/user/');
 
   const keep = () => {
     setSessionModal(false);
@@ -41,7 +38,7 @@ export default () => {
       <CustomerAlert />
       <SecurityVerification
         disabled2fa={location.pathname === '/user/profile'}
-        isResetPassword={location.pathname === '/Auth/ResetPassword'}
+        isResetPassword={location.pathname === '/auth/resetPassword'}
       />
       <Spin spinning={loading} fullscreen />
       <div id="gbpc-scroll" className="flex-1 overflow-auto">
