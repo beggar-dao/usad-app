@@ -1,6 +1,7 @@
 import { ReactComponent as EmailSvg } from '@/assets/images/email.svg';
 import { ReactComponent as GoogleSvg } from '@/assets/images/google.svg';
 import { disable2faAxios, secondaryLogin, sendCaptcha } from '@/services/user';
+import { LoadingOutlined } from '@ant-design/icons';
 import { history, useModel } from '@umijs/max';
 import { Checkbox, Form, Input, Modal } from 'antd';
 import { useEffect, useMemo, useState } from 'react';
@@ -21,6 +22,7 @@ export default function SecurityVerification({
   const { user, setUser, setIsAuthenticated } = useModel('auth');
   const [countdown, setCountdown] = useState(0); // 倒计时秒数
   const [isCounting, setIsCounting] = useState(false); // 是否正在倒计时
+  const [isLoading, setIsLoading] = useState(false);
   const { loginModel, setLoginModel, setAlertInfo, setResetStep } =
     useModel('dialogState');
   const { handlerTransfer, transferForm, withDrawForm, handlerWithDraw } =
@@ -119,44 +121,51 @@ export default function SecurityVerification({
       return;
     }
 
-    let res = disabled2fa
-      ? await disable2faAxios({
-          ...values,
-        })
-      : await secondaryLogin({
-          userId: user.id,
-          ...values,
-        });
-    let data = res?.data || {};
+    setIsLoading(true);
 
-    if (disabled2fa) {
-      let userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
-      localStorage.setItem(
-        'userInfo',
-        JSON.stringify({
+    try {
+      let res = disabled2fa
+        ? await disable2faAxios({
+            ...values,
+          })
+        : await secondaryLogin({
+            userId: user.id,
+            ...values,
+          });
+      let data = res?.data || {};
+
+      if (disabled2fa) {
+        let userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        localStorage.setItem(
+          'userInfo',
+          JSON.stringify({
+            ...userInfo,
+            is2FA: false,
+          }),
+        );
+        setUser({
           ...userInfo,
           is2FA: false,
-        }),
-      );
-      setUser({
-        ...userInfo,
-        is2FA: false,
-      });
-      setLoginModel(false);
-      return;
-    }
+        });
+        setLoginModel(false);
+        return;
+      }
 
-    setIsAuthenticated(data?.tokenInfo?.tokenValue);
-    setUser(data);
-    localStorage.setItem('token', data?.tokenInfo?.tokenValue);
-    localStorage.setItem('userInfo', JSON.stringify(data));
-    setLoginModel(false);
-    setAlertInfo({
-      type: 'success',
-      message: 'Login successful!',
-      show: true,
-    });
-    history.push(!data.is2FA ? '/user/profile' : '/');
+      setIsAuthenticated(data?.tokenInfo?.tokenValue);
+      setUser(data);
+      localStorage.setItem('token', data?.tokenInfo?.tokenValue);
+      localStorage.setItem('userInfo', JSON.stringify(data));
+      setLoginModel(false);
+      setIsLoading(false);
+      setAlertInfo({
+        type: 'success',
+        message: 'Login successful!',
+        show: true,
+      });
+      history.push(!data.is2FA ? '/user/profile' : '/');
+    } catch (error) {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -312,9 +321,10 @@ export default function SecurityVerification({
         <div className="flex mt-12 items-center justify-between gap-6">
           <div
             onClick={() => onFinish()}
-            className="text-base hover:opacity-90 flex-1 text-white h-[48px] text-center gold-gradient-bg leading-[48px] cursor-pointer rounded-[8px]"
+            className="text-base hover:opacity-90 flex-1 text-white h-[48px] gap-2 text-center gold-gradient-bg leading-[48px] cursor-pointer rounded-[8px]"
           >
-            {disabled2fa ? 'Disable' : 'Confirm'}
+            <span>{disabled2fa ? 'Disable' : 'Confirm'}</span>
+            {isLoading && <LoadingOutlined />}
           </div>
           <div
             onClick={() => setLoginModel(false)}
