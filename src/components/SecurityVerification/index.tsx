@@ -50,7 +50,7 @@ export default function SecurityVerification({
       return 3;
     }
     return 2;
-  }, [isResetPassword, disabled2fa]);
+  }, [isResetPassword, disabled2fa, transferForm, withDrawForm]);
 
   const handleSend = () => {
     if (!isCounting) {
