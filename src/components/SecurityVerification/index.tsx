@@ -41,8 +41,12 @@ export default function SecurityVerification({
   }, [countdown, isCounting]);
 
   const templateType = useMemo(() => {
-    if (transferForm.valid || withDrawForm.valid) {
+    if (transferForm.valid) {
       return 10;
+    }
+
+    if (withDrawForm.valid) {
+      return 15;
     }
 
     if (isResetPassword) {
@@ -126,12 +130,12 @@ export default function SecurityVerification({
     try {
       let res = disabled2fa
         ? await disable2faAxios({
-            ...values,
-          })
+          ...values,
+        })
         : await secondaryLogin({
-            userId: user.id,
-            ...values,
-          });
+          userId: user.id,
+          ...values,
+        });
       let data = res?.data || {};
 
       if (disabled2fa) {
@@ -187,25 +191,24 @@ export default function SecurityVerification({
     >
       <div className="px-[16px] py-[16px]">
         <div
-          className={`text-[24px] ${
-            disabled2fa ? 'mb-[8px]' : 'mb-[30px]'
-          } font-bold text-center`}
+          className={`text-[24px] ${disabled2fa ? 'mb-[8px]' : 'mb-[30px]'
+            } font-bold text-center`}
         >
           {withDrawForm.valid
             ? 'Confirm to Withdraw'
             : transferForm.valid
-            ? 'Confirm Transfer'
-            : addressObj.setting
-            ? 'Disable 24 Hour Lock'
-            : addressObj.batch
-            ? 'Add in Batches'
-            : addressObj.add
-            ? 'Add an Address'
-            : addressObj.delete
-            ? 'Delete Address'
-            : disabled2fa
-            ? `Two-Factor Authentication`
-            : `Security Verification`}
+              ? 'Confirm Transfer'
+              : addressObj.setting
+                ? 'Disable 24 Hour Lock'
+                : addressObj.batch
+                  ? 'Add in Batches'
+                  : addressObj.add
+                    ? 'Add an Address'
+                    : addressObj.delete
+                      ? 'Delete Address'
+                      : disabled2fa
+                        ? `Two-Factor Authentication`
+                        : `Security Verification`}
         </div>
 
         {withDrawForm.valid ? (
@@ -277,11 +280,10 @@ export default function SecurityVerification({
             <Input
               suffix={
                 <div
-                  className={`text-sm h-[26px] ${
-                    isCounting
-                      ? 'text-gray-400'
-                      : 'text-[#63BCFF] cursor-pointer'
-                  }`}
+                  className={`text-sm h-[26px] ${isCounting
+                    ? 'text-gray-400'
+                    : 'text-[#63BCFF] cursor-pointer'
+                    }`}
                   onClick={handleSend}
                 >
                   {isCounting ? `${countdown}s` : 'Send'}

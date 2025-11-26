@@ -1,6 +1,6 @@
 import No2fa from '@/components/No2fa';
 import { walletAccount } from '@/services/user';
-import { copyTextToClipboard } from '@/utils';
+import { copyTextToClipboard, getChainIconName } from '@/utils';
 import { CopyOutlined, EyeFilled, EyeInvisibleFilled } from '@ant-design/icons';
 import { history, useModel } from '@umijs/max';
 import { Modal } from 'antd';
@@ -80,11 +80,18 @@ export default function Wallet() {
                           src={'/images/usad.png'}
                           className="block w-full h-full"
                         />
-                        <img
-                          src={`/images/${item.chainId == '60' ? 'eth' : ''}${item.chainId == '195' ? 'tron' : ''
-                            }.png`}
-                          className="absolute right-0 bottom-0 w-6 h-6"
-                        />
+                        {(() => {
+                          const iconName = getChainIconName(item.chainId);
+                          if (!iconName) {
+                            return null;
+                          }
+                          return (
+                            <img
+                              src={`/images/${iconName}.png`}
+                              className="absolute right-0 bottom-0 w-6 h-6"
+                            />
+                          );
+                        })()}
                       </div>
                       <div className="flex-1 overflow-auto">
                         <div className="text-[32px] leading-8 mr-3 font-bold text-white">

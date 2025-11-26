@@ -17,7 +17,7 @@ const copyTextToClipboard = (text: string) => {
   if (navigator.clipboard && window.ClipboardItem) {
     navigator.clipboard
       .writeText(text)
-      .then(() => {})
+      .then(() => { })
       .catch((err) => {
         console.error('Failed to copy:', err);
         fallbackCopyTextToClipboard(text); // 回退到 execCommand
@@ -40,4 +40,16 @@ const substrAddress = (str: string) => {
   return substr(str, 0, 6) + '...' + substr(str, str.length - 4, str.length);
 };
 
-export { copyTextToClipboard, substrAddress };
+const chainIconMap: Record<string, string> = {
+  '60': 'eth',
+  '195': 'tron',
+};
+
+const getChainIconName = (chainId?: string | number) => {
+  if (chainId === undefined || chainId === null) {
+    return '';
+  }
+  return chainIconMap[String(chainId)] || '';
+};
+
+export { copyTextToClipboard, substrAddress, getChainIconName };
