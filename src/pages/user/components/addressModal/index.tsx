@@ -21,7 +21,7 @@ export default function AddressModal() {
       updateAddress({
         ...addressObj,
         ...values,
-        isSecondaryAuth: values.isSecondaryAuth ? 1 : 0,
+        isSecondaryAuth: values.isSecondaryAuth ? 0 : 1,
       });
     } else {
       setLoginModel(true);
@@ -29,7 +29,7 @@ export default function AddressModal() {
         ...addressObj,
         ...values,
         add: true,
-        isSecondaryAuth: values.isSecondaryAuth ? 1 : 0,
+        isSecondaryAuth: values.isSecondaryAuth ? 0 : 1,
       });
     }
   };
@@ -40,7 +40,7 @@ export default function AddressModal() {
     }
     form.setFieldsValue({
       ...addressObj,
-      isSecondaryAuth: addressObj.isSecondaryAuth === 1 ? true : false,
+      isSecondaryAuth: addressObj.isSecondaryAuth === 0 ? true : false,
     });
   }, [addressModal, addressObj]);
 
