@@ -193,7 +193,7 @@ export default defineConfig({
   routes: [
     {
       path: '/',
-      component: './user/index',
+      redirect: '/user/profile',
     },
     {
       path: '/auth',

@@ -15,7 +15,7 @@ export default function AddressBatchModal() {
     setAddressObj({
       ...values,
       batch: true,
-      isSecondaryAuth: values.isSecondaryAuth ? 1 : 0,
+      isSecondaryAuth: values.isSecondaryAuth ? 0 : 1,
     });
   };
 
