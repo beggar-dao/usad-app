@@ -18,6 +18,8 @@ export default function ChangeEmail() {
   const { setUser } = useModel('auth');
   const { countdown, isCounting, startCountdown } = useCountdown();
 
+  Form.useWatch([], form);
+
   const handleSend = async () => {
     if (!isCounting && form.getFieldValue('newEmail')) {
       try {
@@ -185,7 +187,6 @@ export default function ChangeEmail() {
             <Input
               suffix={
                 <button
-                  type="button"
                   className={`text-sm ${isCounting
                     ? 'text-gray-400'
                     : 'text-white hover:text-[#FFD58E] cursor-pointer'

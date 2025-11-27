@@ -7,6 +7,7 @@ export default function ChangePassword() {
   const [form] = Form.useForm();
   const { passwordModel, setPasswordModel, setAlertInfo } =
     useModel('dialogState');
+
   const onFinish = async () => {
     let values = await form.validateFields();
     await updatePassword({
