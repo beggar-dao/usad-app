@@ -26,29 +26,53 @@ const ResetPassword = () => {
   const toggleRepeatPasswordVisibility = () =>
     setShowRepeatPassword(!showRepeatPassword);
 
-  useEffect(() => {
-    if (resetStep === 2) {
-      setLoginModel(false);
-      setStep(3);
-    }
-  }, [resetStep]);
+  const handleConfirm = async (values: any) => {
+    setIsLoading(true);
 
-  const handeConfirm = async (values: any) => {
-    const params = {
-      email: user.email,
-      newPassword: values.newPassword,
-      confirmPassword: values.confirmPassword,
-      captcha: localStorage.getItem('captcha'),
-      totp: '',
-    };
-    await resetPassword(params);
-    setAlertInfo({
-      type: 'success',
-      message: 'reset password success',
-      show: true,
-    });
-    history.push('/');
+    try {
+      const params = {
+        email: user.email,
+        newPassword: values.newPassword,
+        confirmPassword: values.confirmPassword,
+        captcha: localStorage.getItem('captcha'),
+        totp: '',
+      };
+
+      await resetPassword(params);
+
+      setIsLoading(false);
+      setAlertInfo({
+        type: 'success',
+        message: 'reset password success',
+        show: true,
+      });
+      history.push('/');
+    } catch (error) {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (resetStep === 3) {
+      setLoginModel(false);
+      handleConfirm(form.getFieldsValue());
+    }
+  }, [resetStep])
+
+  const handeNext = (values: any) => {
+    if (!values.newPassword || !values.confirmPassword) {
+      setAlertInfo({
+        type: 'error',
+        message: 'Please enter a valid password!',
+        show: true,
+      });
+      return;
+    }
+
+    setLoginModel(true);
   };
+
+  console.log('resetStep', resetStep)
 
   const Steps = () => {
     const handleSubmit = async (values: any) => {
@@ -67,24 +91,22 @@ const ResetPassword = () => {
         const res = await checkUser({ email: values.email });
 
         if (res.data) {
-          setIsLoading(false);
           setUser({ ...user, email: values.email });
-          setLoginModel(true);
           setStep(2);
         } else {
-          setIsLoading(false);
           setAlertInfo({
             type: 'error',
             message: 'User not found',
             show: true,
           });
         }
+        setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
       }
     };
 
-    if (step <= 2) {
+    if (step <= 1) {
       return (
         <div className="w-[392px]">
           <h2 className="text-white text-[24px] mb-8 text-center">
@@ -127,7 +149,7 @@ const ResetPassword = () => {
           </Form>
         </div>
       );
-    } else if (step === 3) {
+    } else if (step === 2) {
       return (
         <div className="w-[392px]">
           <h2 className="text-white text-[24px] mb-8 text-center">
@@ -136,7 +158,7 @@ const ResetPassword = () => {
           <Form
             form={form}
             name="reset-password"
-            onFinish={handeConfirm}
+            onFinish={handeNext}
             layout="vertical"
             size="large"
           >

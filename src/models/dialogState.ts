@@ -28,7 +28,9 @@ export default function useDialogState() {
       eventManager.unsubscribe('showAlert', callback);
     };
   }, []);
+
   const [resetStep, setResetStep] = useState(1);
+
   return {
     loginModel,
     setLoginModel,

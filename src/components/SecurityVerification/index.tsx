@@ -83,7 +83,7 @@ export default function SecurityVerification({
     if (isResetPassword) {
       const captcha = form.getFieldValue('captcha');
       localStorage.setItem('captcha', captcha);
-      setResetStep(2);
+      setResetStep(3);
       return;
     }
 

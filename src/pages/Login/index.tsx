@@ -54,25 +54,17 @@ const LoginForm = () => {
       <div className="flex items-center h-screen">
         <GradientBorderBox className='max-w-[980px] m-auto my-10' gradientClassName='rounded-2xl'>
           <div
-            className={`${isWeb
-              ? 'w-full flex items-center justify-between p-10 black-gradient-bg2 rounded-2xl relative z-10'
-              : ''
-              }`}
+            className={`w-full flex items-center justify-between p-10 black-gradient-bg2 rounded-2xl relative z-10`}
           >
-            {isWeb && (
-              <img
-                className="block w-[346px]"
-                src={bgImg}
-                alt="Login Illustration"
-              />
-            )}
-            <div className={`${isWeb ? 'w-[392px]' : ''}`}>
-              <div className={`${isWeb ? 'container mt-0 px-6' : 'px-[20px]'}`}>
+            <img
+              className="block w-[346px]"
+              src={bgImg}
+              alt="Login Illustration"
+            />
+            <div className="w-[392px]">
+              <div className="px-[20px]">
                 <h2
-                  className={`${isWeb
-                    ? 'text-[24px] !mb-8 text-center'
-                    : 'text-[18px] pt-[16px] pb-[10px] leading-[26px] font-[700]'
-                    }`}
+                  className={`text-[24px] !mb-8 text-center`}
                 >
                   Welcome back!
                 </h2>
@@ -185,8 +177,8 @@ const LoginForm = () => {
             </div>
           </div>
         </GradientBorderBox>
-      </div>
-    </PageAnimate>
+      </div >
+    </PageAnimate >
   );
 };
 
