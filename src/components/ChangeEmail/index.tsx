@@ -47,8 +47,9 @@ export default function ChangeEmail() {
     try {
       const values = await form.validateFields();
       const response = await updateEmail({
-        email: values.newEmail,
-        code: values.captcha,
+        oldEmail: values.oldEmail,
+        newEmail: values.newEmail,
+        captcha: values.captcha,
       });
 
       if (response.success) {

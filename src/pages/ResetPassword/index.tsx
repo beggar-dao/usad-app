@@ -72,8 +72,6 @@ const ResetPassword = () => {
     setLoginModel(true);
   };
 
-  console.log('resetStep', resetStep)
-
   const Steps = () => {
     const handleSubmit = async (values: any) => {
       if (!values.email) {
