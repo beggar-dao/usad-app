@@ -50,14 +50,14 @@ const ResetPassword = () => {
     } catch (error) {
       setIsLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (resetStep === 3) {
       setLoginModel(false);
       handleConfirm(form.getFieldsValue());
     }
-  }, [resetStep])
+  }, [resetStep]);
 
   const handeNext = (values: any) => {
     if (!values.newPassword || !values.confirmPassword) {
@@ -172,6 +172,25 @@ const ResetPassword = () => {
                   min: 6,
                   message: 'Password must be at least 8 characters!',
                 },
+                {
+                  validator: (_, value) => {
+                    if (!value) {
+                      return Promise.reject('');
+                    } else if (
+                      value &&
+                      value.length >= 8 &&
+                      /[a-z]/.test(value) &&
+                      /[A-Z]/.test(value) &&
+                      /\d/.test(value)
+                    ) {
+                      return Promise.resolve();
+                    } else {
+                      return Promise.reject(
+                        'Password must be at least 8 characters, include at least one uppercase letter, one lowercase letter, and one number!',
+                      );
+                    }
+                  },
+                },
               ]}
             >
               <Input.Password
@@ -197,6 +216,25 @@ const ResetPassword = () => {
                 {
                   min: 8,
                   message: 'Password must be at least 8 characters!',
+                },
+                {
+                  validator: (_, value) => {
+                    if (!value) {
+                      return Promise.reject('');
+                    } else if (
+                      value &&
+                      value.length >= 8 &&
+                      /[a-z]/.test(value) &&
+                      /[A-Z]/.test(value) &&
+                      /\d/.test(value)
+                    ) {
+                      return Promise.resolve();
+                    } else {
+                      return Promise.reject(
+                        'Password must be at least 8 characters, include at least one uppercase letter, one lowercase letter, and one number!',
+                      );
+                    }
+                  },
                 },
               ]}
             >
@@ -232,7 +270,10 @@ const ResetPassword = () => {
   return (
     <PageAnimate>
       <div className="flex items-center h-screen">
-        <GradientBorderBox className="max-w-[980px] m-auto my-10" gradientClassName="rounded-2xl">
+        <GradientBorderBox
+          className="max-w-[980px] m-auto my-10"
+          gradientClassName="rounded-2xl"
+        >
           <div className="flex items-center justify-between p-12 black-gradient-bg2 rounded-2xl relative z-10 gap-4">
             <img
               src={bgImg}
