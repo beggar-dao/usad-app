@@ -220,7 +220,7 @@ const ResetPassword = () => {
                   message: 'Password must be at least 8 characters!',
                 },
                 {
-                  validator: ({ getFieldValue }, value) => {
+                  validator: (_, value) => {
                     if (!value) {
                       return Promise.reject('');
                     } else if (
