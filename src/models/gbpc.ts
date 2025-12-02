@@ -20,6 +20,7 @@ export default function () {
   const [withDrawForm, setWithDrawForm] = useState({});
   const [withDrawSuccess, setWithDrawSuccess] = useState(false);
   const [currencyList, setCurrencyList] = useState([]);
+  const [resetForm, setResetForm] = useState({});
   const { handleSettingAddressWhitelist } = useModel('addressWhiteList');
 
   const handlerGetOfficialCurrency = async () => {
@@ -80,6 +81,7 @@ export default function () {
   };
 
   return {
+    resetForm,
     buyDrawer,
     setBuyDrawer,
     buySuccess,
@@ -100,6 +102,7 @@ export default function () {
     handlerDepositPre,
     preData,
     handlerDepositComplete,
+    handleResetConfirm: setResetForm,
     handlerGetOfficialCurrency,
     currencyList,
   };

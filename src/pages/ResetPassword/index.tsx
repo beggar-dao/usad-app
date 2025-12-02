@@ -9,12 +9,12 @@ import { useEffect, useState } from 'react';
 
 const ResetPassword = () => {
   const { setLoginModel, resetStep, setAlertInfo } = useModel('dialogState');
-  const { user, setUser } = useModel('auth');
+  const { user, setUser, clearError } = useModel('auth');
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
-  const { clearError } = useModel('auth');
+  const { resetForm } = useModel('gbpc');
   const [step, setStep] = useState(1);
 
   // Clear any previous errors when component mounts
@@ -34,12 +34,13 @@ const ResetPassword = () => {
         email: user.email,
         newPassword: values.newPassword,
         confirmPassword: values.confirmPassword,
-        captcha: localStorage.getItem('captcha'),
+        captcha: values.captcha,
         totp: '',
       };
 
       await resetPassword(params);
 
+      setLoginModel(false);
       setIsLoading(false);
       setAlertInfo({
         type: 'success',
@@ -54,10 +55,10 @@ const ResetPassword = () => {
 
   useEffect(() => {
     if (resetStep === 3) {
-      setLoginModel(false);
-      handleConfirm(form.getFieldsValue());
+      const values = form.getFieldsValue();
+      handleConfirm({ ...values, ...resetForm });
     }
-  }, [resetStep]);
+  }, [resetStep, resetForm]);
 
   const handeNext = (values: any) => {
     if (!values.newPassword || !values.confirmPassword) {
@@ -208,6 +209,7 @@ const ResetPassword = () => {
             <Form.Item
               label="Confirm New Password"
               name="confirmPassword"
+              dependencies={['newPassword']}
               rules={[
                 {
                   required: true,
@@ -218,7 +220,7 @@ const ResetPassword = () => {
                   message: 'Password must be at least 8 characters!',
                 },
                 {
-                  validator: (_, value) => {
+                  validator: ({ getFieldValue }, value) => {
                     if (!value) {
                       return Promise.reject('');
                     } else if (
@@ -236,6 +238,14 @@ const ResetPassword = () => {
                     }
                   },
                 },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue('newPassword') === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                  },
+                }),
               ]}
             >
               <Input.Password

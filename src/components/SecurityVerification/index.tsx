@@ -25,7 +25,7 @@ export default function SecurityVerification({
   const [isLoading, setIsLoading] = useState(false);
   const { loginModel, setLoginModel, setAlertInfo, setResetStep } =
     useModel('dialogState');
-  const { handlerTransfer, transferForm, withDrawForm, handlerWithDraw } =
+  const { handlerTransfer, transferForm, withDrawForm, handlerWithDraw, handleResetConfirm } =
     useModel('gbpc');
 
   useEffect(() => {
@@ -82,7 +82,7 @@ export default function SecurityVerification({
   const onFinish = async () => {
     if (isResetPassword) {
       const captcha = form.getFieldValue('captcha');
-      localStorage.setItem('captcha', captcha);
+      handleResetConfirm({ captcha });
       setResetStep(3);
       return;
     }
