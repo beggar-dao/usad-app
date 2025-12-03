@@ -42,6 +42,7 @@ export default function TransferSuccess() {
           </div>
           <div
             onClick={() => {
+              setTransferSuccess(false);
               history.push('/user/history');
             }}
             className="rounded-lg flex-1 cursor-pointer gold-gradient-bg text-white text-shadow leading-[48px] text-center text-shadow"
