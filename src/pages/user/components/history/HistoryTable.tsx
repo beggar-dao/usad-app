@@ -8,7 +8,7 @@ import { useRequest } from '@umijs/max';
 import { Button, ConfigProvider, Popover, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import dayjs from 'dayjs';
-import { FunctionComponent, useCallback, useState } from 'react';
+import { FunctionComponent, useCallback, useEffect, useState } from 'react';
 import { TradeType } from '../../utils/constants';
 import { getStatus, getStatusClass, getTradeType } from '../../utils/history';
 import DetailInfo from './DetailInfo';
@@ -26,6 +26,10 @@ const HistoryTable: FunctionComponent<Props> = ({ filterParams }) => {
       refreshDeps: [pageNumber, filterParams],
     },
   );
+
+  useEffect(() => {
+    setPageNumber(1);
+  }, [filterParams]);
 
   const columns: ColumnsType<WalletAccountTransactionItem> = [
     {
