@@ -65,7 +65,7 @@ export default function SecurityVerification({
       return 3;
     }
     return 2;
-  }, [isResetPassword, disabled2fa, transferForm, withDrawForm]);
+  }, [isResetPassword, disabled2fa, transferForm, withDrawForm, addressObj]);
 
   const handleSend = () => {
     if (!isCounting) {
