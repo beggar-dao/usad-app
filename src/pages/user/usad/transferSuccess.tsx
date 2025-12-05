@@ -34,6 +34,7 @@ export default function TransferSuccess() {
         <div className="flex items-center gap-6 justify-between mt-10 ">
           <div
             onClick={() => {
+              setTransferSuccess(false);
               history.push('/user/wallet');
             }}
             className="rounded-lg border border-[#25282C] flex-1 cursor-pointer text-[#C69F58] leading-[48px] text-center"
