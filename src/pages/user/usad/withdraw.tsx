@@ -198,6 +198,14 @@ export default function Withdraw() {
                 >
                   BSC
                 </Select.Option>
+                <Select.Option
+                  name="TOK"
+                  count={`5 Confirmation/s`}
+                  mins={`20 sec`}
+                  value="9200"
+                >
+                  USAD
+                </Select.Option>
               </Select>
             </Form.Item>
             <div className="text-sm flex justify-between mb-1 text-[#ADB1B8] leading-[22px]">

@@ -47,7 +47,7 @@ export default function () {
   const getAddress = async (params: any = {}) => {
     query = {
       pageNumber: 1,
-      pageSize: 5,
+      pageSize: 50,
       ...query,
       ...params,
     };

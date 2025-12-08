@@ -163,6 +163,14 @@ export default function Buy() {
                 >
                   BSC
                 </Select.Option>
+                <Select.Option
+                  name="TOK"
+                  count={`5 Confirmation/s`}
+                  mins={`20 sec`}
+                  value="9200"
+                >
+                  USAD
+                </Select.Option>
               </Select>
             </Form.Item>
 

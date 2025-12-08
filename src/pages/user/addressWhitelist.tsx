@@ -175,6 +175,14 @@ export default function AddressWhitelist() {
                     >
                       SOL
                     </Select.Option>
+                    <Select.Option
+                      name="TOK"
+                      count={`5 Confirmation/s`}
+                      mins={`20 sec`}
+                      value="9200"
+                    >
+                      USAD
+                    </Select.Option>
                   </Select>
                 </Form.Item>
                 <Form.Item name={'address'} label={'Search Address'}>

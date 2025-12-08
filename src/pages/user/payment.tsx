@@ -47,7 +47,7 @@ export default function Payment() {
           {list.length ? (
             <>
               <GradientBorderBox gradientClassName="rounded-lg">
-                <div className="relative z-10 rounded-lg overflow-hidden">
+                <div className="relative z-10 rounded-lg overflow-hidden black-gradient-bg1">
                   <div className="grid grid-cols-[1.5fr_1.5fr_1.5fr_0.6fr] text-sm black-gradient-bg1 h-[40px] leading-[40px] text-white px-3">
                     <div className="px-[18px]">Bank Name</div>
                     <div className="px-[18px]">Account IBAN</div>
