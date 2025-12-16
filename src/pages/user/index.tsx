@@ -28,11 +28,11 @@ export default function UserIndex() {
 
   return (
     <>
-      <div className="absolute">
+      <div className="hidden sm:block absolute">
         <Menu />
       </div>
-      <GradientBorderBox className="m-[34px] left-[256px] w-[calc(100%-320px)]">
-        <div className="p-8 rounded black-gradient-bg2 relative z-10">
+      <GradientBorderBox className="m-auto sm:m-[34px] sm:left-[256px] sm:w-[calc(100%-320px)]">
+        <div className="p-4 sm:p-8 rounded black-gradient-bg2 relative z-10">
           <Outlet />
         </div>
       </GradientBorderBox>

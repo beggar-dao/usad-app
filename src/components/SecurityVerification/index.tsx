@@ -198,7 +198,7 @@ export default function SecurityVerification({
       footer={null}
       open={loginModel}
     >
-      <div className="px-[16px] py-[16px]">
+      <div className="p-0 sm:p-[16px]">
         <div
           className={`text-[24px] ${disabled2fa ? 'mb-[8px]' : 'mb-[30px]'
             } font-bold text-center`}
@@ -290,8 +290,8 @@ export default function SecurityVerification({
               suffix={
                 <div
                   className={`text-sm h-[26px] ${isCounting
-                      ? 'text-gray-400'
-                      : 'text-[#63BCFF] cursor-pointer'
+                    ? 'text-gray-400'
+                    : 'text-[#63BCFF] cursor-pointer'
                     }`}
                   onClick={handleSend}
                 >

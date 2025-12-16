@@ -28,7 +28,7 @@ export default function Profile() {
 
   return (
     <>
-      <div className=" pb-6 text-[24px] font-bold text-white">
+      <div className="pb-6 text-[24px] font-bold text-white">
         Account Setting
       </div>
       <Tabs

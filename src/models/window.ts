@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 export default function useWindowModel() {
   const [width, setWidth] = useState(0);
   const [isWeb, setIsWeb] = useState(false);
@@ -11,6 +12,7 @@ export default function useWindowModel() {
   // const mqlMinWeb = window.matchMedia('(min-width: 1200px) and (max-width: 1470px)')
   const mqlPd = window.matchMedia('(min-width: 744px) and (max-width: 1200px)');
   const mqlPh = window.matchMedia('(max-width: 744px)');
+
   let mq = '';
   if (mqlWeb.matches) {
     mq = 'web';

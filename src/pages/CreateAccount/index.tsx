@@ -6,9 +6,10 @@ import { history, useModel } from '@umijs/max';
 import { Button, Checkbox, Form, Input, Radio, Select } from 'antd';
 import { Country, State } from 'country-state-city';
 import { useEffect, useState } from 'react';
+import { useResponsive } from 'ahooks';
 
 const CreateAccountForm = () => {
-  const { isWeb } = useModel('window');
+  const { sm: isWeb } = useResponsive();
   const [form] = Form.useForm();
   const {
     sendRegisterCaptcha,
@@ -149,11 +150,10 @@ const CreateAccountForm = () => {
           gradientClassName="rounded-2xl"
         >
           <section
-            className={`${
-              isWeb
-                ? 'relative z-10 flex items-center justify-between gap-4 p-10 black-gradient-bg2 rounded-2xl overflow-hidden'
-                : ''
-            }`}
+            className={`${isWeb
+              ? 'relative z-10 flex items-center justify-between gap-4 p-10 black-gradient-bg2 rounded-2xl overflow-hidden'
+              : ''
+              }`}
           >
             {isWeb && (
               <img
@@ -168,11 +168,10 @@ const CreateAccountForm = () => {
                 className={`${isWeb ? ' border-b-0 pb-0' : 'bg-transparent'}`}
               >
                 <h2
-                  className={`${
-                    isWeb
-                      ? 'text-[24px] text-center mb-8'
-                      : 'text-left text-[18px] mb-[10px]'
-                  }`}
+                  className={`${isWeb
+                    ? 'text-[24px] text-center mb-8'
+                    : 'text-left text-[18px] mb-[10px]'
+                    }`}
                 >
                   Create an USAD Account
                 </h2>
@@ -186,11 +185,10 @@ const CreateAccountForm = () => {
               >
                 {/* Scrollable Content Area */}
                 <div
-                  className={`${
-                    isWeb
-                      ? 'px-[12px] pt-0 max-h-[460px] overflow-y-auto'
-                      : 'pb-[300px]'
-                  }`}
+                  className={`${isWeb
+                    ? 'px-[12px] pt-0 max-h-[460px] overflow-y-auto'
+                    : 'pb-[300px]'
+                    }`}
                 >
                   {/* First Name and Last Name */}
                   <div
@@ -272,8 +270,8 @@ const CreateAccountForm = () => {
                         {captchaLoading
                           ? 'Sending...'
                           : isCounting
-                          ? `${countdown}s`
-                          : 'Send Code'}
+                            ? `${countdown}s`
+                            : 'Send Code'}
                       </Button>
                     </div>
                   </Form.Item>
@@ -324,19 +322,17 @@ const CreateAccountForm = () => {
                         }}
                       >
                         <i
-                          className={`bi ${
-                            showPassword ? 'bi-eye' : 'bi-eye-slash'
-                          }`}
+                          className={`bi ${showPassword ? 'bi-eye' : 'bi-eye-slash'
+                            }`}
                         ></i>
                       </span>
                       <div className="flex justify-between pt-[10px] w-full">
                         <div className="w-[22%]">
                           <div
-                            className={`h-[2px] rounded-full ${
-                              watchFields?.password?.length >= 8
-                                ? 'gold-gradient-bg'
-                                : 'bg-[#eee]'
-                            }`}
+                            className={`h-[2px] rounded-full ${watchFields?.password?.length >= 8
+                              ? 'gold-gradient-bg'
+                              : 'bg-[#eee]'
+                              }`}
                           ></div>
                           <div className="font-inter text-[#9EA6BC] text-[12px] leading-[18px] font-normal">
                             8 symbols
@@ -344,12 +340,11 @@ const CreateAccountForm = () => {
                         </div>
                         <div className="w-[22%]">
                           <div
-                            className={`h-[2px] rounded-full ${
-                              /[a-z]/.test(watchFields?.password) &&
+                            className={`h-[2px] rounded-full ${/[a-z]/.test(watchFields?.password) &&
                               watchFields?.password?.length
-                                ? 'gold-gradient-bg'
-                                : 'bg-[#eee]'
-                            }`}
+                              ? 'gold-gradient-bg'
+                              : 'bg-[#eee]'
+                              }`}
                           ></div>
                           <div className="font-inter text-[#9EA6BC] text-[12px] leading-[18px] font-normal">
                             Lower Case
@@ -357,11 +352,10 @@ const CreateAccountForm = () => {
                         </div>
                         <div className="w-[22%]">
                           <div
-                            className={`h-[2px] rounded-full ${
-                              /[A-Z]/.test(watchFields?.password)
-                                ? 'gold-gradient-bg'
-                                : 'bg-[#eee]'
-                            }`}
+                            className={`h-[2px] rounded-full ${/[A-Z]/.test(watchFields?.password)
+                              ? 'gold-gradient-bg'
+                              : 'bg-[#eee]'
+                              }`}
                           ></div>
                           <div className="font-inter text-[#9EA6BC] text-[12px] leading-[18px] font-normal">
                             Upper Case
@@ -369,11 +363,10 @@ const CreateAccountForm = () => {
                         </div>
                         <div className="w-[22%]">
                           <div
-                            className={`h-[2px] rounded-full ${
-                              /[0-9]/.test(watchFields?.password)
-                                ? 'gold-gradient-bg'
-                                : 'bg-[#eee]'
-                            }`}
+                            className={`h-[2px] rounded-full ${/[0-9]/.test(watchFields?.password)
+                              ? 'gold-gradient-bg'
+                              : 'bg-[#eee]'
+                              }`}
                           ></div>
                           <div className="font-inter text-[#9EA6BC] text-[12px] leading-[18px] font-normal">
                             Number
@@ -427,9 +420,8 @@ const CreateAccountForm = () => {
                         }}
                       >
                         <i
-                          className={`bi ${
-                            showConfirmPassword ? 'bi-eye' : 'bi-eye-slash'
-                          }`}
+                          className={`bi ${showConfirmPassword ? 'bi-eye' : 'bi-eye-slash'
+                            }`}
                         ></i>
                       </span>
                     </div>
@@ -498,8 +490,8 @@ const CreateAccountForm = () => {
                         !selectedCountry
                           ? 'Please select a country first'
                           : availableStates.length === 0
-                          ? 'No states/provinces available'
-                          : 'No matching states/provinces'
+                            ? 'No states/provinces available'
+                            : 'No matching states/provinces'
                       }
                     >
                       {availableStates.map((state) => (
@@ -534,18 +526,16 @@ const CreateAccountForm = () => {
 
                 {/* Fixed Bottom Area */}
                 <div
-                  className={`${
-                    isWeb
-                      ? 'relative border-t-0'
-                      : 'absolute bottom-0 left-[0] right-[0] px-[20px]'
-                  }`}
+                  className={`${isWeb
+                    ? 'relative border-t-0'
+                    : 'fixed bottom-0 left-[0] right-[0] px-[20px] py-4 bg-[#212121]'
+                    }`}
                 >
                   <div
-                    className={`absolute ${
-                      isWeb
-                        ? 'left-[-30px] top-0 bottom-[-30px] right-[-30px]'
-                        : 'left-[-20px] right-[-20px] px-[20px]'
-                    }`}
+                    className={`absolute ${isWeb
+                      ? 'left-[-30px] top-0 bottom-[-30px] right-[-30px]'
+                      : 'left-[-20px] right-[-20px] px-[20px]'
+                      }`}
                   ></div>
                   {/* Buy/Redeem Question */}
                   <div className="relative z-40 px-[20px]">
@@ -597,8 +587,8 @@ const CreateAccountForm = () => {
                             value
                               ? Promise.resolve()
                               : Promise.reject(
-                                  new Error('Agree to terms and conditions'),
-                                ),
+                                new Error('Agree to terms and conditions'),
+                              ),
                         },
                       ]}
                     >

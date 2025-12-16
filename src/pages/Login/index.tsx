@@ -2,15 +2,17 @@ import bgImg from '@/assets/images/login.png';
 import GradientBorderBox from '@/components/GradientBorderBox';
 import PageAnimate from '@/components/pageAnimate';
 import type { LoginFormData } from '@/services/types/auth';
+import { cn } from '@/utils/cn';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { useModel } from '@umijs/max';
+import { useResponsive } from 'ahooks';
 import { Button, Checkbox, Form, Input, Spin } from 'antd';
 import { useEffect, useState } from 'react';
 
 const LoginForm = () => {
   const [form] = Form.useForm();
+  const { sm: isWeb } = useResponsive();
   const { login, loginLoading, clearError, setUser } = useModel('auth');
-  const { isWeb } = useModel('window');
   const [showPassword, setShowPassword] = useState(false);
 
   // Clear any previous errors when component mounts
@@ -52,20 +54,18 @@ const LoginForm = () => {
   return (
     <PageAnimate>
       <div className="flex items-center h-screen">
-        <GradientBorderBox className='max-w-[980px] m-auto my-10' gradientClassName='rounded-2xl'>
+        <GradientBorderBox className='w-full sm:max-w-[980px] m-auto my-10' gradientClassName='rounded-2xl'>
           <div
-            className={`w-full flex items-center justify-between p-10 black-gradient-bg2 rounded-2xl relative z-10`}
+            className={cn('w-full flex items-center justify-between p-4 sm:p-10 rounded-2xl relative z-10', isWeb ? 'black-gradient-bg2' : '')}
           >
             <img
-              className="block w-[346px]"
+              className="w-[346px] hidden sm:block"
               src={bgImg}
               alt="Login Illustration"
             />
-            <div className="w-[392px]">
-              <div className="px-[20px]">
-                <h2
-                  className={`text-[24px] !mb-8 text-center`}
-                >
+            <div className="w-full sm:w-[392px]">
+              <div className="px-0 sm:px-[20px]">
+                <h2 className={`text-[24px] !mb-8 sm:text-center`}>
                   Welcome back!
                 </h2>
                 <Spin spinning={loginLoading}>
@@ -159,14 +159,14 @@ const LoginForm = () => {
                     </Form.Item>
                   </Form>
                 </Spin>
-                <div className="flex justify-between">
+                <div className="flex justify-between flex-col items-center sm:flex-row">
                   <p className="text-[#ADB1B8] font-[300] !text-xs !border-0">
                     Don&apos;t have an account yet?{' '}
                     <a className="text-[#C69F58]" href="/auth/createAccount">
                       Register
                     </a>
                   </p>
-                  <p className="font-[300] !text-xs !border-0">
+                  <p className="text-[#ADB1B8] font-[300] !text-xs !border-0 mt-2 sm:mt-0">
                     Forgot password?{' '}
                     <a className="text-[#C69F58]" href="/auth/resetPassword">
                       Reset

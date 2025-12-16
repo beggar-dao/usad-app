@@ -2,8 +2,10 @@ import bgImg from '@/assets/images/login.png';
 import GradientBorderBox from '@/components/GradientBorderBox';
 import PageAnimate from '@/components/pageAnimate';
 import { checkUser, resetPassword } from '@/services/user';
+import { cn } from '@/utils/cn';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { history, useModel } from '@umijs/max';
+import { useResponsive } from 'ahooks';
 import { Button, Form, Input } from 'antd';
 import { useEffect, useState } from 'react';
 
@@ -11,6 +13,7 @@ const ResetPassword = () => {
   const { setLoginModel, resetStep, setAlertInfo } = useModel('dialogState');
   const { user, setUser, clearError } = useModel('auth');
   const [form] = Form.useForm();
+  const { sm: isWeb } = useResponsive();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
@@ -281,13 +284,13 @@ const ResetPassword = () => {
     <PageAnimate>
       <div className="flex items-center h-screen">
         <GradientBorderBox
-          className="max-w-[980px] m-auto my-10"
+          className="w-full sm:max-w-[980px] m-auto my-10"
           gradientClassName="rounded-2xl"
         >
-          <div className="flex items-center justify-between p-12 black-gradient-bg2 rounded-2xl relative z-10 gap-4">
+          <div className={cn('flex items-center justify-between p-4 sm:p-12 rounded-2xl relative z-10 gap-4', isWeb ? 'black-gradient-bg2' : '')}>
             <img
               src={bgImg}
-              className="w-[346px]"
+              className="w-[346px] hidden sm:block"
               alt="Reset Password Illustration"
             />
             <Steps />

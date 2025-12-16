@@ -4,10 +4,10 @@ import { Outlet } from '@umijs/max';
 export default function Auth() {
   return (
     <>
-      <div className="absolute">
+      <div className="hidden sm:block absolute">
         <Menu />
       </div>
-      <div className="relative m-[34px] left-[256px] w-[calc(100%-320px)]">
+      <div className="relative m-auto sm:m-[34px] sm:left-[256px] sm:w-[calc(100%-320px)]">
         <Outlet />
       </div>
     </>

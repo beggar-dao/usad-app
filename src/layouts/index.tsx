@@ -3,6 +3,13 @@ import SecurityVerification from '@/components/SecurityVerification';
 import { Outlet, useLocation, useModel } from '@umijs/max';
 import { Flex, Modal, Progress, Spin } from 'antd';
 import { useEffect, useState } from 'react';
+import { configResponsive } from 'ahooks';
+
+configResponsive({
+  sm: 640,
+  md: 768,
+  lg: 1024,
+});
 
 export default () => {
   const location = useLocation();
