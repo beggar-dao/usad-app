@@ -1,9 +1,11 @@
 import { DeleteOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { useModel } from '@umijs/max';
+import { useResponsive } from 'ahooks';
 import { Checkbox, Drawer, Form, Input, Select, Tooltip } from 'antd';
 import { useEffect } from 'react';
 
 export default function AddressBatchModal() {
+  const { sm: isWeb } = useResponsive();
   const { addressBatchModal, setAddressBatchModal, setAddressObj } =
     useModel('addressWhiteList');
   const { setLoginModel } = useModel('dialogState');
@@ -31,7 +33,7 @@ export default function AddressBatchModal() {
   return (
     <Drawer
       title="Add Your Wallet Addresses"
-      width={'57%'}
+      width={isWeb ? '57%' : '100%'}
       open={addressBatchModal}
       onClose={() => {
         setAddressBatchModal(false);
@@ -52,14 +54,14 @@ export default function AddressBatchModal() {
             <>
               {fields.map(({ key, name }, index) => (
                 <div
-                  className="flex  justify-center items-start flex-col"
+                  className="flex justify-center items-start flex-col"
                   key={key}
                 >
                   <div className="text-sm text-white font-[500]">
                     Address {index + 1}
                   </div>
-                  <div className="flex mt-3 w-full gap-6 items-center">
-                    <div className="flex-1 overflow-hidden">
+                  <div className="grid grid-cols-1 sm:grid-cols-4 mt-3 w-full sm:gap-6 items-center">
+                    <div className="overflow-hidden">
                       <Form.Item
                         name={[name, 'currency']}
                         label="Assets"
@@ -70,7 +72,7 @@ export default function AddressBatchModal() {
                         <Input readOnly className="w-full" />
                       </Form.Item>
                     </div>
-                    <div className="flex-1 overflow-hidden">
+                    <div className="overflow-hidden">
                       <Form.Item
                         name={[name, 'chainType']}
                         label="Chain Type"
@@ -138,7 +140,7 @@ export default function AddressBatchModal() {
                         </Select>
                       </Form.Item>
                     </div>
-                    <div className="flex-1 overflow-hidden">
+                    <div className="overflow-hidden">
                       <Form.Item
                         name={[name, 'address']}
                         label="Address"
@@ -151,7 +153,7 @@ export default function AddressBatchModal() {
                         />
                       </Form.Item>
                     </div>
-                    <div className="flex-1 overflow-hidden">
+                    <div className="overflow-hidden">
                       <Form.Item
                         name={[name, 'tag']}
                         label="Tag"
@@ -176,7 +178,7 @@ export default function AddressBatchModal() {
                   onClick={() => {
                     add();
                   }}
-                  className="max-w-[100px] px-4 h-8 leading-8 text-center cursor-pointer text-xs rounded-lg gold-gradient-bg text-white font-bold text-shadow"
+                  className="sm:max-w-[100px] px-4 h-10 leading-10 text-center cursor-pointer text-xs rounded-[8px] text-white font-bold bg-[#1E2023] border border-[#25282C] text-[#DEC08B]"
                 >
                   + Add
                 </div>
@@ -203,7 +205,7 @@ export default function AddressBatchModal() {
         </Form.Item>
         <div
           onClick={onFinish}
-          className="max-w-[213px] text-base hover:opacity-80 text-white h-[48px] text-center mt-6 gold-gradient-bg leading-[48px] cursor-pointer rounded-[8px] text-shadow"
+          className="sm:max-w-[213px] text-base hover:opacity-80 text-white h-[48px] text-center mt-6 gold-gradient-bg leading-[48px] cursor-pointer rounded-[8px] text-shadow"
         >
           Confirm
         </div>

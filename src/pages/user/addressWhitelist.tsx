@@ -103,7 +103,7 @@ export default function AddressWhitelist() {
               setLoginModel(true);
             }}
           />
-          <div className=" pb-6 text-[24px] font-bold text-white">
+          <div className="pb-6 text-[24px] font-bold text-white">
             Address Whitelist
           </div>
           <div className="text-sm text-[#ADB1B8] leading-[26px] flex items-center">
@@ -114,20 +114,14 @@ export default function AddressWhitelist() {
               <InfoCircleOutlined className="w-4 h-4 ml-1" />
             </Tooltip>
           </div>
-          <div className="!mt-5 flex items-start justify-between">
-            <Form
-              form={form}
-              className="register-form-layout"
-              size="large"
-              layout="vertical"
-            >
-              <div className="flex gap-[40px]">
+          <div className="!mt-5 flex flex-col flex-col-reverse sm:flex-row items-start justify-between">
+            <Form form={form} size="large" layout="vertical" className="w-full mt-6 sm:mt-0">
+              <div className="flex flex-col sm:flex-row sm:gap-[40px]">
                 <Form.Item name={'chainType'} label={'Chain Type'}>
                   <Select
-                    className="no-border-select"
                     placeholder="Please select a chain type"
                     allowClear
-                    style={{ width: '260px', height: '47px' }}
+                    className="w-full sm:w-[260px]"
                     onChange={(value) => {
                       getAddress({
                         ...form.getFieldsValue(),
@@ -188,7 +182,7 @@ export default function AddressWhitelist() {
                 <Form.Item name={'address'} label={'Search Address'}>
                   <Input
                     onChange={onChangeAddress}
-                    className="w-[260px] register-input"
+                    className="w-full sm:w-[260px]"
                     placeholder="Enter the address or add a n..."
                   />
                 </Form.Item>
@@ -214,8 +208,8 @@ export default function AddressWhitelist() {
               </div>
             </div>
           </div>
-          <div className="border mt-3 border-[#505050] rounded-lg  overflow-hidden">
-            <div className="px-6 h-10 text-sm items-center grid grid-cols-[1fr_1fr_2fr_5fr_1.5fr] black-gradient-bg1 text-white leading-6">
+          <div className="border mt-3 border-[#505050] rounded-lg overflow-x-auto sm:overflow-hidden">
+            <div className="px-6 h-10 text-sm items-center grid grid-cols-[1fr_1fr_2fr_5fr_1.5fr] black-gradient-bg1 text-white leading-6 min-w-[800px]">
               <div>Assets</div>
               <div>Network</div>
               <div>Tag</div>
@@ -226,7 +220,7 @@ export default function AddressWhitelist() {
               return (
                 <div
                   key={index}
-                  className="px-6 min-h-[50px] text-xs items-center grid grid-cols-[1fr_1fr_2fr_5fr_1.5fr] text-[#ADB1B8] leading-6"
+                  className="px-6 min-h-[50px] text-xs items-center grid grid-cols-[1fr_1fr_2fr_5fr_1.5fr] text-[#ADB1B8] leading-6 min-w-[800px]"
                 >
                   <div className="w-full">{item.currency}</div>
                   <div className="w-full">{item.chainType}</div>
@@ -282,8 +276,8 @@ export default function AddressWhitelist() {
                 theme={{
                   components: {
                     Pagination: {
-                      colorPrimary: '#202B4B',
-                      colorPrimaryHover: '#202B4B',
+                      colorPrimary: '#ADB1B8',
+                      colorPrimaryHover: '#ADB1B8',
                       /* 这里是你的组件 token */
                     },
                   },
@@ -328,7 +322,7 @@ export default function AddressWhitelist() {
                 />
               </svg>
               <div className="flex-1">
-                <div className="text-white font-bold">
+                <div className="text-white font-semibold sm:font-bold">
                   New Address Transfer 24h Lock
                 </div>
                 <div className="text-sm text-[#71757A] font-[300]">
@@ -336,14 +330,14 @@ export default function AddressWhitelist() {
                 </div>
               </div>
             </div>
-            <div className="flex w-[300px] justify-between items-center ">
+            <div className="flex sm:w-[300px] justify-between items-center ">
               {setting.newAddressTransferLockStatus === 0 ? (
                 <div className="bg-[#F2503E1F] h-[26px] text-sm flex items-center rounded text-center text-[#F2503E] px-2">
                   <LockOutlined className="w-4 mr-1" /> 24h
                 </div>
               ) : null}
 
-              <div className="flex items-center text-sm text-white">
+              <div className="hidden sm:flex items-center text-sm text-white">
                 <img
                   className="block w-6 h-6 mr-2"
                   src={checkedSwitch ? checked : disabled}
@@ -396,7 +390,7 @@ export default function AddressWhitelist() {
                 <circle cx="28" cy="26" r="1" fill="#BBBBBB" />
               </svg>
               <div className="flex-1">
-                <div className="text-white font-bold">
+                <div className="text-white font-semibold sm:font-bold">
                   Manage Crypto Withdrawal/Transfer Limits
                 </div>
                 <div className="text-sm text-[#71757A] font-[300]">
@@ -404,7 +398,7 @@ export default function AddressWhitelist() {
                 </div>
               </div>
             </div>
-            <div className="flex w-[300px] justify-between items-center ">
+            <div className="flex sm:w-[300px] justify-end items-center ">
               <Button
                 onClick={() => {
                   setWithDrawModal(true);

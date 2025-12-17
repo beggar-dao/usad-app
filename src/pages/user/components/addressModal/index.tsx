@@ -54,8 +54,8 @@ export default function AddressModal() {
       footer={null}
       open={addressModal}
     >
-      <div className="px-[16px] py-[15px]">
-        <div className="text-[24px] mb-[30px] font-bold text-center text-white">
+      <div className="sm:p-4">
+        <div className="text-[18px] sm:text-[24px] mb-[30px] font-bold text-center text-white">
           {`${!!addressObj.id ? 'Edit' : 'Add an'}`} Address
         </div>
         {!!addressObj.id ? null : (
@@ -195,7 +195,7 @@ export default function AddressModal() {
         </Form>
         <div
           onClick={() => onFinish()}
-          className="text-base hover:opacity-80 text-white h-[48px] text-center mt-12 gold-gradient-bg leading-[48px] cursor-pointer rounded-[8px] text-shadow"
+          className="text-base hover:opacity-80 text-white h-[48px] text-center mt-8 sm:mt-12 gold-gradient-bg leading-[48px] cursor-pointer rounded-[8px] text-shadow"
         >
           Confirm
         </div>
