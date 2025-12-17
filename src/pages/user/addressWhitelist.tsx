@@ -115,7 +115,12 @@ export default function AddressWhitelist() {
             </Tooltip>
           </div>
           <div className="!mt-5 flex flex-col flex-col-reverse sm:flex-row items-start justify-between">
-            <Form form={form} size="large" layout="vertical" className="w-full mt-6 sm:mt-0">
+            <Form
+              form={form}
+              size="large"
+              layout="vertical"
+              className="w-full mt-6 sm:mt-0"
+            >
               <div className="flex flex-col sm:flex-row sm:gap-[40px]">
                 <Form.Item name={'chainType'} label={'Chain Type'}>
                   <Select
@@ -276,8 +281,8 @@ export default function AddressWhitelist() {
                 theme={{
                   components: {
                     Pagination: {
-                      colorPrimary: '#ADB1B8',
-                      colorPrimaryHover: '#ADB1B8',
+                      colorPrimary: '#dcb87c',
+                      colorPrimaryHover: '#dcb87c',
                       /* 这里是你的组件 token */
                     },
                   },
