@@ -200,7 +200,7 @@ export default function SecurityVerification({
     >
       <div className="p-0 sm:p-[16px]">
         <div
-          className={`text-[24px] ${disabled2fa ? 'mb-[8px]' : 'mb-[30px]'
+          className={`text-[18px] sm:text-[24px] ${disabled2fa ? 'mb-[8px]' : 'mb-[30px]'
             } font-bold text-center`}
         >
           {withDrawForm.valid

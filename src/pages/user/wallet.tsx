@@ -36,7 +36,7 @@ export default function Wallet() {
             zIndex={9999}
             destroyOnHidden={true}
           >
-            <div className="p-4">
+            <div className="sm:p-4">
               <DepositContent />
             </div>
           </Modal>

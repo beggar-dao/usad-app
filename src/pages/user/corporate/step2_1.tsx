@@ -9,8 +9,11 @@ import { Popconfirm } from 'antd';
 import { useEffect, useState } from 'react';
 import AddUbo from '../add';
 import GradientBorderBox from '@/components/GradientBorderBox';
+import { useResponsive } from 'ahooks';
+import { cn } from '@/utils/cn';
 
 export default function Step1_1() {
+  const { sm: isWeb } = useResponsive();
   const { setUboModal, uboList, handleDelUbo, handleGetUboList, businessData } =
     useModel('verify');
   const [obj, setObj] = useState({});
@@ -37,10 +40,10 @@ export default function Step1_1() {
           }}
         />
       </div>
-      <GradientBorderBox className="w-[588px] m-auto" gradientClassName="rounded-[16px]">
-        <div className="relative z-10 rounded-[16px] pt-[40px] black-gradient-bg5">
+      <GradientBorderBox className="w-auto sm:w-[588px] m-auto" gradientClassName="rounded-[16px]">
+        <div className={cn('relative z-10 rounded-[16px] pt-[40px]', isWeb ? 'black-gradient-bg5' : '')}>
           <TimeLine active={2} progress={100} />
-          <div className="w-full h-[600px] pb-8 overflow-y-auto px-8">
+          <div className="w-full sm:h-[600px] pb-8 overflow-y-auto px-0 sm:px-8">
             <div className="text-[24px] text-white font-bold mb-3">
               Associated parties of your company
             </div>
@@ -143,11 +146,11 @@ export default function Step1_1() {
               </div>
             ) : null}
           </div>
-          <div className="w-full rounded-bl-2xl rounded-br-2xl  h-[104px] px-[40px] gap-[23px] flex items-center justify-between">
+          <div className="fixed bottom-0 left-0 right-0 sm:relative sm:bottom-auto w-full rounded-bl-2xl rounded-br-2xl h-[104px] px-3 sm:px-[40px] gap-3 sm:gap-6 flex flex-row-reverse sm:flex-row items-center justify-between">
             <div
               onClick={() => (uboList.length ? handleSubmit() : null)}
-              className={`w-[390px] ${!uboList.length ? ' opacity-60' : ''
-                }  cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] gold-gradient-bg rounded-lg text-shadow`}
+              className={`sm:w-[390px] w-[210px] cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] gold-gradient-bg rounded-lg text-shadow ${!uboList.length ? ' opacity-60' : ''
+                }`}
             >
               Continue
             </div>

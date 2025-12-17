@@ -41,9 +41,9 @@ export default function Step1_1() {
           }}
         />
       </div>
-      <div className="w-[588px] relative m-auto rounded-[16px] pt-[40px] border border-[#505050]">
+      <div className="w-auto sm:w-[588px] relative m-auto rounded-[16px] pt-[40px] border-none sm:border border-[#505050]">
         <TimeLine active={1} progress={100} />
-        <div className="w-full h-[600px] overflow-y-auto px-8">
+        <div className="w-full sm:h-[600px] overflow-y-auto px-0 sm:px-8">
           <div className="text-[24px] text-black font-bold mb-4">
             Occupation
           </div>
@@ -93,10 +93,10 @@ export default function Step1_1() {
                 </Select.Option>
               </Select>
             </Form.Item>
-            <div className="text-[24px] mt-[48px] text-black font-bold">
+            <div className="text-[24px] mt-6 sm:mt-[48px] text-white font-bold">
               Confirmstion of Accuracy
             </div>
-            <div className="text-[#9EA6BC] mb-6 text-xs leading-[22px]">
+            <div className="text-[#5B6276] mb-6 text-xs leading-[22px]">
               Please carefully review the provided information and confirm
               that it is true, complete and accurate.
             </div>
@@ -121,10 +121,10 @@ export default function Step1_1() {
             </Form.Item>
           </Form>
         </div>
-        <div className="w-full rounded-bl-2xl rounded-br-2xl  h-[104px] px-[40px] gap-[23px] flex items-center justify-between">
+        <div className="fixed bottom-0 left-0 right-0 sm:relative sm:bottom-auto w-full rounded-bl-2xl rounded-br-2xl h-[104px] px-3 sm:px-[40px] gap-3 sm:gap-6 flex flex-row-reverse sm:flex-row items-center justify-between">
           <div
             onClick={handleSubmit}
-            className="w-[390px] cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] text-shadow gold-gradient-bg rounded-lg"
+            className="w-[210px] sm:w-[390px] cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] text-shadow gold-gradient-bg rounded-lg"
           >
             Continue
           </div>

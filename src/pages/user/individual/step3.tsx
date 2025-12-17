@@ -58,10 +58,10 @@ export default function Step3() {
           }}
         />
       </div>
-      <GradientBorderBox className="w-[588px] m-auto" gradientClassName="rounded-[16px]">
+      <GradientBorderBox className="w-auto sm:w-[588px] m-auto" gradientClassName="rounded-[16px]">
         <div className="relative z-10 rounded-[16px] pt-[40px] black-gradient-bg5">
           <TimeLine active={3} progress={100} />
-          <div className="w-full h-[600px] overflow-y-auto px-8">
+          <div className="w-full sm:h-[600px] overflow-y-auto px-0 sm:px-8">
             <div className="text-[24px] text-white font-bold mb-4">
               FaceMatch ID
             </div>
@@ -121,10 +121,10 @@ export default function Step3() {
             See our guidelines
           </div> */}
           </div>
-          <div className="w-full rounded-bl-2xl rounded-br-2xl  h-[104px] px-[40px] gap-[23px] flex items-center justify-between">
+          <div className="fixed bottom-0 left-0 right-0 sm:relative sm:bottom-auto w-full rounded-bl-2xl rounded-br-2xl h-[104px] px-3 sm:px-[40px] gap-3 sm:gap-6 flex flex-row-reverse sm:flex-row items-center justify-between">
             <div
               onClick={handleSubmit}
-              className="w-[390px] relative cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] gold-gradient-bg rounded-lg"
+              className="w-[210px] sm:w-[390px] relative cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] gold-gradient-bg rounded-lg"
             >
               {!individualData?.personalPhotoData ? (
                 <Upload

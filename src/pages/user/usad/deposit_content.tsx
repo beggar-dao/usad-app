@@ -68,7 +68,7 @@ export default function DepositContent() {
 
   return (
     <>
-      <div className="text-center text-[24px] font-bold text-white mb-8">
+      <div className="text-center text-[18px] sm:text-[24px] font-bold text-white mb-8">
         Deposit
       </div>
       <Form layout="vertical" className="register-form-layout" size="large">

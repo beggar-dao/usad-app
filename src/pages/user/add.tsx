@@ -40,8 +40,8 @@ export default function AddUbo({ data }: any) {
       footer={null}
       open={uboModal}
     >
-      <div className="px-4 py-[15px]">
-        <div className="text-[24px] mb-2 font-bold text-center">
+      <div className="p-0 sm:px-4 sm:py-[15px]">
+        <div className="text-[18px] sm:text-[24px] mb-2 font-bold text-center">
           Add {roles === 0 ? 'UBO' : 'Representative'}
         </div>
         <div className="text-center !mb-5 text-xs leading-5 text-[#666]">

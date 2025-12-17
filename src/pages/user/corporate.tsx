@@ -3,12 +3,15 @@ import GradientBorderBox from '@/components/GradientBorderBox';
 import TimeLine from '@/components/Timeline';
 import { businessRelness } from '@/services/user';
 import { history, useModel } from '@umijs/max';
-import { ConfigProvider, Form, Input, Select } from 'antd';
+import { Form, Input, Select } from 'antd';
 import { Country } from 'country-state-city';
 import { useEffect } from 'react';
+import { cn } from '@/utils/cn';
+import { useResponsive } from 'ahooks';
 
 export default function Step1_1() {
   const [form] = Form.useForm();
+  const { sm: isWeb } = useResponsive();
   const { setBusinessData, businessData } = useModel('verify');
 
   const handleSubmit = async () => {
@@ -44,10 +47,10 @@ export default function Step1_1() {
           }}
         />
       </div>
-      <GradientBorderBox className="w-[588px] m-auto" gradientClassName="rounded-[16px]">
-        <div className="relative z-10 rounded-[16px] pt-[40px] black-gradient-bg5">
+      <GradientBorderBox className="w-auto sm:w-[588px] m-auto" gradientClassName="rounded-[16px]">
+        <div className={cn('relative z-10 rounded-[16px] pt-[40px]', isWeb ? 'black-gradient-bg5' : '')}>
           <TimeLine active={1} progress={50} />
-          <div className="w-full h-[600px] overflow-y-auto px-8">
+          <div className="w-full sm:h-[600px] overflow-y-auto px-0 sm:px-8">
             <div className="text-[24px] text-white font-bold mb-3">
               Company information
             </div>
@@ -144,10 +147,10 @@ export default function Step1_1() {
               </Form.Item>
             </Form>
           </div>
-          <div className="w-full rounded-bl-2xl rounded-br-2xl  h-[104px] px-[40px] gap-[23px] flex items-center justify-between">
+          <div className="fixed bottom-0 left-0 right-0 sm:relative sm:bottom-auto w-full rounded-bl-2xl rounded-br-2xl h-[104px] px-3 sm:px-[40px] gap-3 sm:gap-6 flex flex-row-reverse sm:flex-row items-center justify-between">
             <div
               onClick={handleSubmit}
-              className="w-[390px] cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] gold-gradient-bg rounded-lg text-shadow"
+              className="w-[210px] sm:w-[390px] cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] gold-gradient-bg rounded-lg text-shadow"
             >
               Continue
             </div>
