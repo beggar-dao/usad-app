@@ -16,7 +16,7 @@ export default function WithDrawSuccess() {
       open={withDrawSuccess}
       zIndex={9999}
     >
-      <div className="p-2">
+      <div className="sm:p-2">
         <img
           src={complete}
           className="block w-[80px] m-auto mt-4"

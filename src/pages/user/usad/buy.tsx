@@ -6,9 +6,12 @@ import { useEffect, useState } from 'react';
 import BuyDraw from './buyDraw';
 import BuySuccess from './buySuccess';
 import GradientBorderBox from '@/components/GradientBorderBox';
+import { cn } from '@/utils/cn';
+import { useResponsive } from 'ahooks';
 
 export default function Buy() {
   const [form] = Form.useForm();
+  const { sm: isWeb } = useResponsive();
   const [checkedBank, setCheckedBank] = useState({});
   const { list, handlerBankList } = useModel('payment');
 
@@ -51,8 +54,8 @@ export default function Buy() {
     <>
       <BuyDraw currency={currency[faitCurrency]} />
       <BuySuccess />
-      <div className="flex items-center justify-between pb-3 text-[24px] font-bold text-[#202B4B]">
-        <div className="text-sm cursor-pointer leading-[26px] text-white flex items-center gap-6">
+      <div className="flex items-center justify-end sm:justify-between pb-3 text-[24px] font-bold text-[#202B4B]">
+        <div className="hidden sm:flex text-sm cursor-pointer leading-[26px] text-white items-center gap-6">
           <span className="gold-gradient-text border-b border-b-[#C69F58]">
             Buy USAD
           </span>
@@ -85,9 +88,9 @@ export default function Buy() {
           }}
         />
       </div>
-      <GradientBorderBox className="w-[580px] !mt-[96px] m-auto" gradientClassName="rounded-2xl">
-        <div className="p-8 rounded-2xl relative z-10 black-gradient-bg2">
-          <div className="text-center text-[24px] font-bold text-white mb-8">
+      <GradientBorderBox className="w-auto sm:w-[580px] !mt-[96px] m-auto" gradientClassName="rounded-2xl">
+        <div className={cn("sm:p-8 rounded-2xl relative z-10", isWeb ? 'black-gradient-bg2' : '')}>
+          <div className="hidden sm:flex text-center text-[24px] font-bold text-white mb-8">
             Buy with Fiat
           </div>
           <ConfigProvider

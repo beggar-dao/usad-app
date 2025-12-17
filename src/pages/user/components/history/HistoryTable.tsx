@@ -34,6 +34,8 @@ const HistoryTable: FunctionComponent<Props> = ({ filterParams }) => {
   const columns: ColumnsType<WalletAccountTransactionItem> = [
     {
       title: 'Coin',
+      fixed: 'left',
+      width: 100,
       dataIndex: 'currencyName',
       key: 'currencyName',
       render: (_, { tradeType, fiatCurrency, currencyName }) => (
@@ -132,6 +134,7 @@ const HistoryTable: FunctionComponent<Props> = ({ filterParams }) => {
             total: data?._meta.totalCount ?? 0,
             onChange: handlePageChange,
           }}
+          scroll={{ x: 800 }}
           className="black-gradient-bg4"
         />
       </ConfigProvider>
