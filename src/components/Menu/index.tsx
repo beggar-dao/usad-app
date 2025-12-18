@@ -197,7 +197,6 @@ export function MobileMenu() {
         activeKey={activeKey}
         onChange={handleChange}
         tabBarGutter={12}
-        animated={false}
         items={items}
         tabBarStyle={{ margin: 0 }}
       />

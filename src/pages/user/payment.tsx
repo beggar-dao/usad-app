@@ -1,4 +1,5 @@
 import ConfirmModal from '@/components/ConfirmModal';
+import GradientBorderBox from '@/components/GradientBorderBox';
 import No2fa from '@/components/No2fa';
 import NoBank from '@/components/NoBank';
 import { DeleteOutlined } from '@ant-design/icons';
@@ -6,7 +7,6 @@ import { history, useModel } from '@umijs/max';
 import { Button } from 'antd';
 import { useEffect } from 'react';
 import VerifyBank from './components/verifyBank';
-import GradientBorderBox from '@/components/GradientBorderBox';
 
 export default function Payment() {
   const { user } = useModel('auth');
@@ -48,7 +48,7 @@ export default function Payment() {
             <>
               <GradientBorderBox gradientClassName="rounded-lg">
                 <div className="relative z-10 rounded-lg overflow-hidden black-gradient-bg1">
-                  <div className="grid grid-cols-[1.5fr_1.5fr_1.5fr_0.6fr] text-sm black-gradient-bg1 h-[40px] leading-[40px] text-white px-0 sm:px-3">
+                  <div className="grid grid-cols-[1.5fr_1.5fr_1.5fr_0.6fr] text-sm black-gradient-bg1 h-[40px] items-center text-white px-0 sm:px-3">
                     <div className="px-3 sm:px-[18px]">Bank Name</div>
                     <div className="px-3 sm:px-[18px]">Account IBAN</div>
                     <div className="px-3 sm:px-[18px]">Status</div>
@@ -118,8 +118,9 @@ export default function Payment() {
                 onClick={() => {
                   history.push('/user/payment/addBank');
                 }}
-                className={`mt-12 cursor-pointer w-full sm:w-[214px] h-[48px] gold-gradient-bg flex justify-center items-center text-shadow text-center ${list.length >= 5 ? 'text-[#000]' : 'text-white'
-                  } rounded-lg`}
+                className={`mt-12 cursor-pointer w-full sm:w-[214px] h-[48px] gold-gradient-bg flex justify-center items-center text-shadow text-center ${
+                  list.length >= 5 ? 'text-[#000]' : 'text-white'
+                } rounded-lg`}
               >
                 Add Bank Account
               </Button>
