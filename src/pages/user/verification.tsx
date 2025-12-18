@@ -58,7 +58,7 @@ export default function Verification() {
           ) : null}
           <div
             style={{ minHeight: `calc(100% - 96px)` }}
-            className="grid grid-cols-2 items-center gap-8 max-w-[1084px] mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-2 items-center gap-4 sm:gap-8 max-w-[1084px] mx-auto"
           >
             <GradientBorderBox
               onClick={() => {

@@ -11,7 +11,11 @@ import {
 } from '@/services/user';
 import { history, useModel } from '@umijs/max';
 import { useEffect } from 'react';
+import { useResponsive } from 'ahooks';
+import { cn } from '@/utils/cn';
+
 export default function Step2_2() {
+  const { sm: isWeb } = useResponsive();
   const { uboList, handleGetUboList, businessData } = useModel('verify');
   const { setAlertInfo } = useModel('dialogState');
   const status = {
@@ -85,14 +89,14 @@ export default function Step2_2() {
           }}
         />
       </div>
-      <GradientBorderBox className="w-[588px] m-auto" gradientClassName="rounded-[16px]">
-        <div className="relative z-10 rounded-[16px] py-[40px] black-gradient-bg5">
+      <GradientBorderBox className="w-auto sm:w-[588px] m-auto" gradientClassName="rounded-[16px]">
+        <div className={cn('relative z-10 rounded-[16px] pt-[40px]', isWeb ? 'black-gradient-bg5' : '')}>
           <TimeLine active={3} progress={100} />
-          <div className="w-full h-[600px] pb-10 overflow-y-auto px-8">
+          <div className="w-full sm:h-[600px] overflow-y-auto px-0 sm:px-8">
             <div className="text-[24px] text-white font-bold mb-3">
               Verification not yet complete
             </div>
-            <div className="text-[13px]  border border-[#F3974F] flex items-center h-[48px] px-4 rounded-lg  bg-[#FFA60014] text-[#EE6700] ">
+            <div className="text-[13px] border border-[#F3974F] flex items-center h-[48px] px-4 rounded-lg  bg-[#FFA60014] text-[#EE6700] ">
               To verify the company, all Associated Parties must complete
               verification.
             </div>
@@ -110,7 +114,7 @@ export default function Step2_2() {
                 {uboList.map((_: any, index) => (
                   <div
                     key={index}
-                    className="mt-2 bg-[#191919] rounded-xl py-3 px-4"
+                    className="mt-2 bg-[#191919] rounded-xl p-2 overflow-x-auto sm:px-4 sm:py-3"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3 text-[14px] text-[#ADB1B8]">
@@ -137,16 +141,15 @@ export default function Step2_2() {
                       <div className="items-center flex gap-2"></div>
                     </div>
                     {_.status === 1 || _.status === 2 ? null : (
-                      <div className="mt-3 flex items-center gap-4">
+                      <div className="mt-3 flex items-center gap-2 sm:gap-4">
                         <div
                           onClick={async () => {
-                            // handleGetUboList();
                             let res = await getRZM({ id: _.id });
                             history.push(
                               `${window.location.origin}/user/verification/corporate/step3?code=${res.data}&id=${_.id}`,
                             );
                           }}
-                          className="h-[40px] whitespace-nowrap leading-[40px] rounded-[4px] text-sm text-white bg-[#202B4B] cursor-pointer !px-5 "
+                          className="h-[40px] whitespace-nowrap leading-[40px] rounded-[4px] text-sm text-white gold-gradient-bg text-shadow cursor-pointer px-2 sm:!px-5"
                         >
                           Verify {_.status === 3 ? 'Again' : 'Now'}
                         </div>
@@ -160,7 +163,7 @@ export default function Step2_2() {
                               type: 'success',
                             });
                           }}
-                          className="h-[40px] whitespace-nowrap leading-[40px] rounded-[4px] text-sm text-[#202B4B] cursor-pointer  !px-5 border border-[#202B4B1F]"
+                          className="h-[40px] whitespace-nowrap leading-[40px] rounded-[4px] text-sm text-[#C69F58] cursor-pointer px-2 sm:!px-5 border border-[#25282C]"
                         >
                           Send to email
                         </div>
@@ -171,7 +174,7 @@ export default function Step2_2() {
                               `${window.location.origin}/user/verification/corporate/step3?code=${res.data}&id=${_.id}`,
                             );
                           }}
-                          className="h-[40px] whitespace-nowrap leading-[40px] rounded-[4px] text-sm text-[#202B4B] cursor-pointer !px-5 border border-[#202B4B1F]"
+                          className="h-[40px] whitespace-nowrap leading-[40px] rounded-[4px] text-sm text-[#C69F58] cursor-pointer px-2 sm:!px-5 border border-[#25282C]"
                         >
                           Copy link
                         </div>
@@ -184,10 +187,10 @@ export default function Step2_2() {
           </div>
           {uboList.length &&
             uboList.filter((item: any) => item.status === 0).length === 0 ? (
-            <div className="w-full rounded-bl-2xl rounded-br-2xl  h-[104px] px-[40px] gap-[23px] flex items-center justify-between">
+            <div className="fixed bottom-0 left-0 right-0 sm:relative sm:bottom-auto w-full rounded-bl-2xl rounded-br-2xl h-[104px] px-3 sm:px-[40px] gap-3 sm:gap-6 flex flex-row-reverse sm:flex-row items-center justify-between">
               <div
                 onClick={handleSubmit}
-                className="w-[390px] cursor-pointer h-[48px] leading-[48px] text-center text-white text-shadow font-[500] gold-gradient-bg rounded-lg"
+                className="w-[210px] sm:w-[390px] cursor-pointer h-[48px] leading-[48px] text-center text-white text-shadow font-[500] gold-gradient-bg rounded-lg"
               >
                 Submit for Verification
               </div>

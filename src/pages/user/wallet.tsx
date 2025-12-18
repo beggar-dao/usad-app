@@ -36,7 +36,7 @@ export default function Wallet() {
             zIndex={9999}
             destroyOnHidden={true}
           >
-            <div className="p-4">
+            <div className="sm:p-4">
               <DepositContent />
             </div>
           </Modal>
@@ -65,14 +65,14 @@ export default function Wallet() {
           </div>
           {/* <div className=" font-bold text-[#6ECE82] mt-2">+0.00</div> */}
 
-          <div className="text-xs text-[#ADB1B8] mt-[85px]">Your Holdings:</div>
-          <div className="grid grid-cols-2 mt-[18px] gap-[16px]">
+          <div className="text-xs text-[#ADB1B8] mt-8 sm:mt-[85px]">Your Holdings:</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 mt-1 sm:mt-[16px] gap-[16px]">
             {data?.assets?.map((item, index) => {
               return (
                 <GradientBorderBox gradientClassName="rounded-2xl">
                   <div
                     key={index}
-                    className="px-8 py-9 rounded-2xl relative z-10 bg-[#1A1A1B]"
+                    className="p-5 sm:px-8 sm:py-9 rounded-[8px] sm:rounded-2xl relative z-10 bg-[#1A1A1B]"
                   >
                     <div className="flex mb-7">
                       <div className="w-[80px] h-[80px] mr-4 relative">
@@ -133,12 +133,12 @@ export default function Wallet() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex mt-[56px] items-center justify-between gap-3">
+                    <div className="flex mt-8 sm:mt-[56px] flex-col sm:flex-row items-center justify-between gap-3">
                       <div
                         onClick={() => {
                           history.push('/user/usad/buy');
                         }}
-                        className="gold-gradient-bg flex-1 cursor-pointer rounded-lg leading-10 text-center text-white text-xs font-bold text-shadow"
+                        className="gold-gradient-bg w-full sm:w-auto flex-1 cursor-pointer rounded-lg leading-10 text-center text-white text-xs font-bold text-shadow"
                       >
                         Buy USAD
                       </div>
@@ -146,7 +146,7 @@ export default function Wallet() {
                         onClick={() => {
                           setOpen(true);
                         }}
-                        className="gold-gradient-bg cursor-pointer flex-1 rounded-lg leading-10 text-center text-white text-xs font-bold text-shadow"
+                        className="gold-gradient-bg w-full sm:w-auto flex-1 cursor-pointer rounded-lg leading-10 text-center text-white text-xs font-bold text-shadow"
                       >
                         Deposit
                       </div>
@@ -154,7 +154,7 @@ export default function Wallet() {
                         onClick={() => {
                           history.push('/user/usad/transfer');
                         }}
-                        className="border border-[#25282C] cursor-pointer flex-1 rounded-lg leading-10 text-center text-white text-xs font-bold bg-[#1E2023]"
+                        className="border border-[#25282C] w-full sm:w-auto flex-1 cursor-pointer rounded-lg leading-10 text-center text-white text-xs font-bold bg-[#1E2023]"
                       >
                         Transfer
                       </div>
@@ -162,7 +162,7 @@ export default function Wallet() {
                         onClick={() => {
                           history.push('/user/usad/withdraw');
                         }}
-                        className="border border-[#25282C] cursor-pointer flex-1 rounded-lg leading-10 text-center text-white text-xs font-bold bg-[#1E2023]"
+                        className="border border-[#25282C] w-full sm:w-auto flex-1 cursor-pointer rounded-lg leading-10 text-center text-white text-xs font-bold bg-[#1E2023]"
                       >
                         Withdraw
                       </div>

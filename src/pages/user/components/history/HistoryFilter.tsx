@@ -44,11 +44,11 @@ const HistoryFilter: FunctionComponent<Props> = ({ onValuesChange }) => {
         onValuesChange={handleValuesChange}
         initialValues={{ coin: '', tradeType: '', status: '' }}
       >
-        <div className="grid grid-cols-[0.8fr_1.4fr_0.8fr_1.5fr] gap-[24px]">
-          <Form.Item name={'coin'} label={'Coin'}>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-[0.8fr_1.4fr_0.8fr_1.5fr] sm:gap-6">
+          <Form.Item name={'coin'} label={'Coin'} className="mb-0">
             <Select options={CurrencyTypeOptions} />
           </Form.Item>
-          <Form.Item name={'tradeType'} label={'Transaction Type'}>
+          <Form.Item name={'tradeType'} label={'Transaction Type'} className="mb-0">
             <Select options={TradeTypeOptions} />
           </Form.Item>
           <Form.Item name={'status'} label={'Status'}>

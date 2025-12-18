@@ -60,44 +60,47 @@ export default function VerificationStart() {
           }}
         />
       </div>
-      <div className="text-[20px] leading-[36px] text-[#ADB1B8] mt-[108px]">
+      <div className="text-[16px] sm:text-[20px] leading-[36px] text-[#ADB1B8] mt-6 sm:mt-[108px]">
         Let's get you verified <br /> Follow the simple steps below
       </div>
-      <div className="mt-[40px] flex gap-[62px] items-center">
+      <div className="mt-4 sm:mt-[40px] flex flex-col gap-3 sm:flex-row sm:gap-[62px] items-center">
         {(params.get('type') === 'individual' ? individual : corporate).map(
           (item, index) => (
-            <GradientBorderBox gradientClassName="rounded-[16px]">
+            <GradientBorderBox
+              className="w-full sm:w-auto"
+              gradientClassName="rounded-[16px]"
+            >
               <div
                 key={index}
-                className="relative z-10 flex-1 px-6 py-[30px] black-gradient-bg1 rounded-[16px] "
+                className="relative z-10 flex-1 p-4 sm:px-6 sm:py-[30px] black-gradient-bg1 rounded-[16px] "
               >
                 <div className="flex justify-end">{item.icon}</div>
-                <div className="text-[#666] mt-[10px] text-[20px] font-[400]">
+                <div className="text-[#666] mt-0 sm:mt-[10px] text-[16px] sm:text-[20px] font-[400]">
                   {item.name}
                 </div>
-                <div className="text-white mt-[10px] text-[18px] font-bold h-[42px]">
+                <div className="text-white mt-0 sm:mt-[10px] text-[18px] font-bold h-[42px]">
                   {item.content}
                 </div>
                 {index !== 2 ? (
-                  <Jt className="absolute top-[50%] mt-[-16px] right-[-50px]" />
+                  <Jt className="sm:block hidden absolute top-[50%] mt-[-16px] right-[-50px]" />
                 ) : null}
               </div>
             </GradientBorderBox>
           ),
         )}
       </div>
-      <div className="flex mt-[80px] items-center gap-[25px] justify-center">
+      <div className="flex flex-col mt-10 gap-3 sm:flex-row sm:mt-20 items-center sm:gap-[25px] justify-center">
         <div
           onClick={() => {
             params.get('type') === 'individual'
               ? history.push('/user/verification/individual')
               : history.push('/user/verification/corporate');
           }}
-          className="h-[48px] cursor-pointer leading-[48px] hover:opacity-[80] transition-all gold-gradient-bg rounded-lg px-[40px] text-white text-base text-shadow"
+          className="w-full sm:w-auto h-[48px] cursor-pointer leading-[48px] hover:opacity-[80] transition-all gold-gradient-bg rounded-lg px-[40px] text-white text-base text-shadow text-center"
         >
           Continue on this device
         </div>
-        <div className="h-[48px] cursor-pointer leading-[48px] bg-[#1E2023] border border-[#25282C] text-[#C69F58] hover:opacity-[80] transition-all rounded-lg px-[40px] text-base">
+        <div className="w-full sm:w-auto h-[48px] cursor-pointer leading-[48px] bg-[#1E2023] border border-[#25282C] text-[#C69F58] hover:opacity-[80] transition-all rounded-lg px-[40px] text-base text-center">
           Continue on phone
         </div>
       </div>

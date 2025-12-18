@@ -9,8 +9,11 @@ import { history, useModel, useSearchParams } from '@umijs/max';
 
 import { Form, Upload } from 'antd';
 import { useEffect } from 'react';
+import { useResponsive } from 'ahooks';
+import { cn } from '@/utils/cn';
 
 export default function Step3_1() {
+  const { sm: isWeb } = useResponsive();
   const [form] = Form.useForm();
   const { user } = useModel('auth');
   const { setAlertInfo } = useModel('dialogState');
@@ -65,10 +68,10 @@ export default function Step3_1() {
           }}
         />
       </div>
-      <GradientBorderBox className="w-[588px] m-auto" gradientClassName="rounded-[16px]">
-        <div className="relative z-10 rounded-[16px] pt-[40px] black-gradient-bg5">
+      <GradientBorderBox className="w-auto sm:w-[588px] m-auto" gradientClassName="rounded-[16px]">
+        <div className={cn("relative z-10 rounded-[16px] pt-[40px] black-gradient-bg5", isWeb ? "" : "")}>
           <TimeLine active={3} progress={100} />
-          <div className="w-full h-[600px] overflow-y-auto px-8">
+          <div className="w-full sm:h-[600px] overflow-y-auto px-0 sm:px-8">
             <div className="text-[24px] text-white font-bold mb-4">
               FaceMatch ID
             </div>
@@ -128,9 +131,9 @@ export default function Step3_1() {
             See our guidelines
           </div> */}
           </div>
-          <div className="w-full rounded-bl-2xl rounded-br-2xl  h-[104px] px-[40px] gap-[23px] flex items-center justify-between">
+          <div className="fixed bottom-0 left-0 right-0 sm:relative sm:bottom-auto w-full rounded-bl-2xl rounded-br-2xl h-[104px] px-3 sm:px-[40px] gap-3 sm:gap-6 flex flex-row-reverse sm:flex-row items-center justify-between">
             {!individualData?.personalPhotoData ? (
-              <div className="w-[390px] relative cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] bg-[#202b4b] rounded-lg">
+              <div className="w-[210px] sm:w-[390px] relative cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] bg-[#202b4b] rounded-lg">
                 <Upload
                   maxCount={1}
                   showUploadList={false}
@@ -151,7 +154,7 @@ export default function Step3_1() {
             ) : (
               <div
                 onClick={handleSubmit}
-                className="w-[390px] relative cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] bg-[#202b4b] rounded-lg"
+                className="w-[210px] sm:w-[390px] relative cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] bg-[#202b4b] rounded-lg"
               >
                 Submit
               </div>

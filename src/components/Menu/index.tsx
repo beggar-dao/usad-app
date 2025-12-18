@@ -10,7 +10,8 @@ import {
   WalletIcon,
 } from '@/components/Icons';
 import { cn } from '@/utils/cn';
-import { history, useModel, useSearchParams } from '@umijs/max';
+import { history, useLocation, useModel, useSearchParams } from '@umijs/max';
+import { Tabs } from 'antd';
 import { useMemo } from 'react';
 
 interface MenuItem {
@@ -21,15 +22,16 @@ interface MenuItem {
   onClick: () => void;
 }
 
-export default function Menu() {
+function useMenuList(): MenuItem[] {
   const { logout } = useModel('auth');
   const { user } = useModel('auth');
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const isNotLogin =
     !user.id && !searchParams.get('code') && !searchParams.get('id');
 
-  const menuList: MenuItem[] = useMemo(() => {
-    const menuList = [
+  return useMemo(() => {
+    const menuList: MenuItem[] = [
       {
         name: 'Account',
         url: '/user/profile',
@@ -65,10 +67,10 @@ export default function Menu() {
         name: 'Payment',
         url: '/user/payment',
         icon: <PaymentIcon isActive={location.pathname === '/user/payment'} />,
+        checked: location.pathname.includes('/user/payment'),
         onClick: () => {
           history.push('/user/payment');
         },
-        checked: location.pathname.includes('/user/payment'),
       },
       {
         name: 'Address Whitelist',
@@ -96,10 +98,10 @@ export default function Menu() {
         name: 'History',
         url: '/user/history',
         icon: <TimeIcon isActive={location.pathname === '/user/history'} />,
+        checked: location.pathname === '/user/history',
         onClick: () => {
           history.push('/user/history');
         },
-        checked: location.pathname === '/user/history',
       },
       {
         name: 'Logout',
@@ -117,7 +119,11 @@ export default function Menu() {
     }
 
     return menuList;
-  }, [location.pathname, isNotLogin]);
+  }, [location.pathname, logout, isNotLogin]);
+}
+
+export default function Menu() {
+  const menuList = useMenuList();
 
   return (
     <div className="w-[256px] h-screen py-[34px] bg-[#05060F] border-r-[1px] border-[#272831]">
@@ -125,7 +131,7 @@ export default function Menu() {
         MAIN MENU
       </div>
       <div className="px-6">
-        {menuList.map((item: any, index) => {
+        {menuList.map((item: MenuItem, index) => {
           return (
             <GradientBorderBox
               key={index}
@@ -151,6 +157,49 @@ export default function Menu() {
           );
         })}
       </div>
+    </div>
+  );
+}
+
+export function MobileMenu() {
+  const menuList = useMenuList();
+  const activeKey =
+    menuList.find((item) => item.checked)?.url ?? menuList[0]?.url ?? '';
+
+  const items = menuList.map((item) => ({
+    key: item.url,
+    label: (
+      <div
+        className={cn(
+          'flex flex-col items-center gap-1 text-xs font-medium',
+          item.checked ? 'text-white' : 'text-[#9E9E9E]',
+        )}
+      >
+        <span>{item.name}</span>
+      </div>
+    ),
+    children: null,
+  }));
+
+  const handleChange = (key: string) => {
+    const target = menuList.find((item) => item.url === key);
+    target?.onClick?.();
+  };
+
+  if (!activeKey) {
+    return null;
+  }
+
+  return (
+    <div className="mobile-menu-container w-full px-4 pt-4 pb-1 bg-[#05060F]">
+      <Tabs
+        className="mobile-menu-tabs"
+        activeKey={activeKey}
+        onChange={handleChange}
+        tabBarGutter={12}
+        items={items}
+        tabBarStyle={{ margin: 0 }}
+      />
     </div>
   );
 }

@@ -1,18 +1,17 @@
 import GradientBorderBox from '@/components/GradientBorderBox';
-import Menu from '@/components/Menu';
-import {
-  history,
-  Outlet,
-  useModel,
-  useSearchParams,
-} from '@umijs/max';
+import Menu, { MobileMenu } from '@/components/Menu';
+import { cn } from '@/utils/cn';
+import { history, Outlet, useModel, useSearchParams } from '@umijs/max';
+import { useResponsive } from 'ahooks';
 import { useEffect } from 'react';
 
 export default function UserIndex() {
   const { user } = useModel('auth');
   const { init } = useModel('verify');
+  const { sm: isWeb } = useResponsive();
   const [searchParams] = useSearchParams();
-  const isNotLogin = !user.id && !searchParams.get('code') && !searchParams.get('id')
+  const isNotLogin =
+    !user.id && !searchParams.get('code') && !searchParams.get('id');
 
   useEffect(() => {
     init();
@@ -28,11 +27,20 @@ export default function UserIndex() {
 
   return (
     <>
-      <div className="absolute">
-        <Menu />
-      </div>
-      <GradientBorderBox className="m-[34px] left-[256px] w-[calc(100%-320px)]">
-        <div className="p-8 rounded black-gradient-bg2 relative z-10">
+      {isWeb ? (
+        <div className="absolute">
+          <Menu />
+        </div>
+      ) : (
+        <MobileMenu />
+      )}
+      <GradientBorderBox className="m-auto sm:m-[34px] sm:left-[256px] sm:w-[calc(100%-320px)]">
+        <div
+          className={cn(
+            'p-4 sm:p-8 rounded relative z-10',
+            isWeb ? 'black-gradient-bg2' : '',
+          )}
+        >
           <Outlet />
         </div>
       </GradientBorderBox>

@@ -73,10 +73,10 @@ export default function Step1_1() {
           }}
         />
       </div>
-      <GradientBorderBox className="w-[588px] m-auto" gradientClassName="rounded-[16px]">
+      <GradientBorderBox className="w-auto sm:w-[588px] m-auto" gradientClassName="rounded-[16px]">
         <div className="relative z-10 rounded-[16px] pt-[40px] black-gradient-bg5">
           <TimeLine active={2} progress={100} />
-          <div className="w-full h-[600px] overflow-y-auto px-8">
+          <div className="w-full sm:h-[600px] overflow-y-auto px-0 sm:px-8">
             <div className="text-[24px] text-white font-bold mb-4">
               Personal Details
             </div>
@@ -153,16 +153,16 @@ export default function Step1_1() {
                 <br /> <span className="text-[#ADB1B8]">· uncut</span> (all
                 corners of the document should be visible)
               </div>
-              <div className="flex items-center gap-[30px] !mt-5">
-                <img src={step2_1} className="block w-[120px]" />
-                <img src={step2_2} className="block w-[120px]" />
-                <img src={step2_3} className="block w-[120px]" />
+              <div className="flex items-center gap-2 sm:gap-[30px] !mt-5">
+                <img src={step2_1} className="block w-[106px] sm:w-[120px]" />
+                <img src={step2_2} className="block w-[106px] sm:w-[120px]" />
+                <img src={step2_3} className="block w-[106px] sm:w-[120px]" />
               </div>
-              <div className="flex items-center gap-[18px] !mt-5">
+              <div className="flex flex-col sm:flex-row items-center gap-0 sm:gap-[18px] !mt-5">
                 <Form.Item
                   label=""
                   name="firstPhotoData"
-                  className="flex-1"
+                  className="flex-1 w-full sm:w-auto"
                   rules={[
                     {
                       required: true,
@@ -204,7 +204,7 @@ export default function Step1_1() {
                 {form.getFieldValue('certificateType') !== 0 ? (
                   <Form.Item
                     label=""
-                    className="flex-1"
+                    className="flex-1 w-full sm:w-auto"
                     name="secondPhotoData"
                     rules={[
                       {
@@ -248,10 +248,10 @@ export default function Step1_1() {
               </div>
             </Form>
           </div>
-          <div className="w-full rounded-bl-2xl rounded-br-2xl  h-[104px] px-[40px] gap-[23px] flex items-center justify-between">
+          <div className="fixed bottom-0 left-0 right-0 sm:relative sm:bottom-auto w-full rounded-bl-2xl rounded-br-2xl h-[104px] px-3 sm:px-[40px] gap-3 sm:gap-6 flex flex-row-reverse sm:flex-row items-center justify-between">
             <div
               onClick={handleSubmit}
-              className="w-[390px] cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] gold-gradient-bg rounded-lg text-shadow"
+              className="w-[210px] sm:w-[390px] cursor-pointer h-[48px] leading-[48px] text-center text-white font-[500] gold-gradient-bg rounded-lg text-shadow"
             >
               Continue
             </div>

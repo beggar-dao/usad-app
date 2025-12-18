@@ -20,7 +20,7 @@ export default function ConfirmModal({
       footer={null}
       open={confirmModal}
     >
-      <div className="px-4 !py-5">
+      <div className="p-0 sm:p-4">
         <div className="text-center mb-[50px] mt-[30px] text-white text-sm leading-[22px]">
           {content || 'Are you sure you want to delete this bank account?'}
         </div>

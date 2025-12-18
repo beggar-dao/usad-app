@@ -6,9 +6,12 @@ import { useEffect, useState } from 'react';
 import WithDrawSuccess from './withDrawSuccess';
 import usadCoin from '@/assets/images/usad_coin.png';
 import GradientBorderBox from '@/components/GradientBorderBox';
+import { useResponsive } from 'ahooks';
+import { cn } from '@/utils/cn';
 
 export default function Withdraw() {
   const [form] = Form.useForm();
+  const { sm: isWeb } = useResponsive();
   const [addressObj, setAddressObj] = useState({});
   const { setLoginModel } = useModel('dialogState');
   const { setWithDrawForm, handlerWithDraw } = useModel('gbpc');
@@ -90,8 +93,8 @@ export default function Withdraw() {
   return (
     <>
       <WithDrawSuccess />
-      <div className="flex items-center justify-between pb-3 text-[24px] font-bold">
-        <div className="text-sm cursor-pointer leading-[26px] text-white flex items-center gap-6">
+      <div className="flex items-center justify-end sm:justify-between pb-3 text-[24px] font-bold">
+        <div className="hidden sm:flex text-sm cursor-pointer leading-[26px] text-white items-center gap-6">
           <span
             onClick={() => {
               history.push('/user/usad/buy');
@@ -125,7 +128,7 @@ export default function Withdraw() {
         />
       </div>
 
-      <div className="flex mt-9 gap-[50px]">
+      <div className="flex mt-9 flex-col sm:flex-row sm:gap-[50px]">
         <div className="flex-1">
           <Form layout="vertical" size="large" form={form} requiredMark={false}>
             <div className="text-sm mb-1 text-[#ADB1B8] leading-[22px]">
@@ -370,32 +373,32 @@ export default function Withdraw() {
             <div className="font-bold text-base">0.1%</div>
             <div
               onClick={handleSubmit}
-              className="mt-6 max-w-[212px] font-bold cursor-pointer leading-[48px] w-full rounded-lg gold-gradient-bg text-white text-center text-shadow"
+              className="mt-6 sm:max-w-[212px] font-bold cursor-pointer leading-[48px] w-full rounded-lg gold-gradient-bg text-white text-center text-shadow"
             >
               Confirm
             </div>
           </Form>
         </div>
-        <GradientBorderBox className="w-[424px]" gradientClassName="rounded-lg">
-          <div className="h-full black-gradient-bg2 p-8 relative z-10 rounded-lg">
+        <GradientBorderBox className="mt-8 sm:mt-0 sm:w-[424px]" gradientClassName="rounded-lg">
+          <div className={cn("p-4 sm:p-8 rounded-2xl relative z-10 sm:h-full", isWeb ? 'black-gradient-bg2' : 'bg-[#252525]')}>
             <div className="text-sm text-[#ADB1B8] leading-[26px]">
               Daily Remaining Limit
             </div>
-            <div className="mt-1 text-white font-bold">
-              {setting.usedFiatWithdrawalDailyLimit || 0} /
+            <div className="mt-1 text-white sm:font-bold">
+              {setting.usedFiatWithdrawalDailyLimit || 0} / {' '}
               {setting.fiatWithdrawalDailyLimit} USAD
             </div>
 
             <div className="mt-4 text-sm text-[#ADB1B8] leading-[26px]">
               Monthly Remaining Limit
             </div>
-            <div className="mt-1 text-white font-bold">
-              {setting.usedFiatWithdrawalMonthlyLimit || 0} /
+            <div className="mt-1 text-white sm:font-bold">
+              {setting.usedFiatWithdrawalMonthlyLimit || 0} / {' '}
               {setting.fiatWithdrawalMonthlyLimit} USAD
             </div>
             <div
               onClick={handlerLimit}
-              className="mt-[50px] cursor-pointer text-sm leading-[26px] gold-gradient-text"
+              className="mt-8 sm:mt-[50px] cursor-pointer text-sm leading-[26px] gold-gradient-text"
             >
               Increase Limit Manage Limit
             </div>

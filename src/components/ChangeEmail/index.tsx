@@ -99,7 +99,7 @@ export default function ChangeEmail() {
       open={emailModel}
       width={500}
     >
-      <div className="px-4 py-[15px]">
+      <div className="p-0 sm:p-4">
         <div className="text-[24px] mb-[24px] font-bold text-center text-white">
           Change Email
         </div>

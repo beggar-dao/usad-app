@@ -269,7 +269,7 @@ export default function ProfileTab1() {
             <Button
               htmlType="submit"
               type="primary"
-              className="gradient-button mt-12 cursor-pointer flex justify-center items-center text-center text-white"
+              className="gradient-button mt-12 cursor-pointer flex justify-center items-center text-center text-white w-full rounded-md sm:rounded-full sm:w-[244px]"
             >
               Confirm
             </Button>

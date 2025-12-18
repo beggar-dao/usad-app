@@ -16,7 +16,7 @@ export default function Complete() {
 
   return (
     <>
-      <div className="w-[588px] relative m-auto rounded-[16px] pt-[40px] border border-[#505050]">
+      <div className="w-auto sm:w-[588px] relative m-auto rounded-[16px] pt-[40px] border-none sm:border border-[#505050]">
         <TimeLine active={4} progress={100} />
         <div className="flex h-[700px] flex-col justify-center items-center">
           <div>
